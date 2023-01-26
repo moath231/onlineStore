@@ -13,7 +13,7 @@
           <div class="input-group">
             <input type="text" class="form-control" placeholder="Search">
             <div class="input-group-append">
-              <button class="btn btn-primary" type="submit">
+              <button class="btn btonstyle" type="submit">
                 <i class="fa fa-search"></i>
               </button>
             </div>
@@ -25,11 +25,10 @@
       <div class="col-lg-3 col-sm-6">
         <div class="widgets-wrap d-flex justify-content-end">
           <div class="widget-header">
-            <a href="#" class="icontext">
-              <div class="icon-wrap icon-xs bg2 round text-secondary"><i class="fa fa-shopping-cart"></i></div>
-              <div class="text-wrap">
-                <small>Basket</small>
-                <span>3 items</span>
+            <a href="#" class="icontext position-relative">
+              <div class="icon-wrap icon-xs cart-color"><i class="fa fa-shopping-cart"></i></div>
+              <div class="text-wrap position-absolute position-topright cart-color">
+                <span>3</span>
               </div>
             </a>
           </div>
@@ -37,7 +36,7 @@
           <div class="widget-header dropdown">
             <a href="#" class="icontext ml-3" data-toggle="dropdown" data-offset="20,10">
               <div class="icon-wrap icon-xs bg2 round text-secondary"><i class="fa fa-user"></i></div>
-              <div class="text-wrap">
+              <div class="text-wrap cart-color">
                 <small>Hello.</small>
                 <span>Login <i class="fa fa-caret-down"></i></span>
               </div>
@@ -52,7 +51,7 @@
                   <label>Password</label>
                   <input type="password" class="form-control" placeholder="Password">
                 </div>
-                <button type="submit" class="btn btn-primary">Sign in</button>
+                <button type="submit" class="btn btonstyle">Sign in</button>
               </form>
               <hr class="dropdown-divider">
               <a class="dropdown-item" href="#">Have account? Sign up</a>
@@ -71,8 +70,8 @@
   <!-- container.// -->
 </section>
 <!-- header-main .// -->
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+{{-- #e9e9e9 --}}
+<nav class="navbar navbar-expand-lg navbar-dark">
   <div class="container">
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav"

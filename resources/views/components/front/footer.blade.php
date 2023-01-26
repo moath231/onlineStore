@@ -1,4 +1,4 @@
-<footer class="section-footer bg-dark white">
+<footer class="section-footer backGfooter white">
   <div class="container">
       <section class="footer-top padding-top">
           <div class="row">
@@ -40,7 +40,7 @@
                           <strong>Fax:</strong> +123456789
                       </p>
 
-                      <div class="btn-group white">
+                      <div class="suciaLmedia">
                           <a class="btn btn-facebook" title="Facebook" target="_blank" href="#"><i class="fab fa-facebook-f  fa-fw"></i></a>
                           <a class="btn btn-instagram" title="Instagram" target="_blank" href="#"><i class="fab fa-instagram  fa-fw"></i></a>
                           <a class="btn btn-youtube" title="Youtube" target="_blank" href="#"><i class="fab fa-youtube  fa-fw"></i></a>
