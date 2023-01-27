@@ -111,3 +111,28 @@ $(document).ready(function() {
 });
 // jquery end
 
+
+$(document).ready(function(){
+    $('.slider').slick({
+      infinite: true,
+      autoplay: true,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      autoplaySpeed: 2000,
+      focusOnSelect: true,
+      arrows: false,
+    });
+  });
+
+
+  $(document).ready(function(){
+    $('.sliderBrand').slick({
+      infinite: true,
+      autoplay: true,
+      slidesToShow: 5,
+      slidesToScroll: 1,
+      autoplaySpeed: 5000,
+      focusOnSelect: true,
+      arrows: false,
+    });
+  });

@@ -2101,6 +2101,15 @@ ul.row, ul.row-sm {
   display: block; }
 
 /* ====================== block ==================== */
+.boxBrand {
+  padding: 20px;
+  background: #fff;
+  border-radius: 0.37rem;
+  border: 1px solid #e4e4e4; }
+  .boxBrand img {
+    max-width: 100%; }
+/* ====================== block ==================== */
+/* ====================== block ==================== */
 .box {
   padding: 1rem 1.2rem;
   display: block;
@@ -2291,6 +2300,17 @@ ul.row, ul.row-sm {
 }
 /*  */
 
+
+/* bg section image */
+.bgsectionimage{
+  background-image: url(../images/banners/bg-cpu.jpg);
+  height: 50vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+}
+/*  */
 /* footer */
 .backGfooter{
   background-color: #e9e9e9;
