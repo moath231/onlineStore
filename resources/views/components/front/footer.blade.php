@@ -54,13 +54,13 @@
       </section>
       <section class="footer-bottom row border-top-white">
           <div class="col-sm-6">
-              <p class="text-white-50"> Made with
-                  <3  by moath ababneh.</p>
+              <p class="text-white-250"> Made with
+                <i class="fas fa-heart"></i>  by moath ababneh.</p>
           </div>
           <div class="col-sm-6">
-              <p class="text-md-right text-white-50">
+              <p class="text-md-right text-white-250">
                   Copyright &copy
-                  <a href="#" class="text-white-50">you&me shop</a>
+                  <a href="#" class="text-white-250">you&me shop</a>
               </p>
           </div>
       </section>

@@ -36,7 +36,7 @@
           <div class="widget-header dropdown">
             <a href="#" class="icontext ml-3" data-toggle="dropdown" data-offset="20,10">
               <div class="icon-wrap icon-xs bg2 round text-secondary"><i class="fa fa-user"></i></div>
-              <div class="text-wrap cart-color">
+              <div class="text-wrap loginPopupColor">
                 <small>Hello.</small>
                 <span>Login <i class="fa fa-caret-down"></i></span>
               </div>

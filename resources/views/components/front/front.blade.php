@@ -55,7 +55,6 @@
     <header id="sticky-menu" class="header header-2">
       <x-front.navbar/>
     </header>
-
     <main class="main">
       {{ $slot }}
     </main>
