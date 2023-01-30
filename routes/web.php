@@ -17,3 +17,8 @@ Route::get('/', function () {
     $title = 'home';
     return view('front.index',compact('title'));
 });
+
+Route::get('/shop', function () {
+    $title = 'shoping';
+    return view('front.shop',compact('title'));
+});

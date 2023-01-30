@@ -42,6 +42,7 @@
               </div>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
+
               <form class="px-4 py-3">
                 <div class="form-group">
                   <label>Email address</label>
@@ -53,6 +54,8 @@
                 </div>
                 <button type="submit" class="btn btonstyle">Sign in</button>
               </form>
+
+
               <hr class="dropdown-divider">
               <a class="dropdown-item" href="#">Have account? Sign up</a>
               <a class="dropdown-item" href="#">Forgot password?</a>
