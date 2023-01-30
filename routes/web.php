@@ -16,9 +16,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     $title = 'home';
     return view('front.index',compact('title'));
-});
+})->name('home');
 
 Route::get('/shop', function () {
     $title = 'shoping';
     return view('front.shop',compact('title'));
-});
+})->name('shop');
+
+Route::get('/register', function () {
+    $title = 'register';
+    return view('auth.signUp',compact('title'));
+})->name('regster');

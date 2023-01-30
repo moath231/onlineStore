@@ -55,7 +55,7 @@
       <section class="footer-bottom row border-top-white">
           <div class="col-sm-6">
               <p class="text-white-250"> Made with
-                <i class="fas fa-heart"></i>  by moath ababneh.</p>
+                <i class="fas fa-heart" style="color: darkred"></i>  by moath ababneh.</p>
           </div>
           <div class="col-sm-6">
               <p class="text-md-right text-white-250">

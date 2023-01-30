@@ -145,13 +145,13 @@ a:hover {
   transition: .5s; }
 
 .hover-bg:hover {
-  background: #007bff;
+  background: #16489f;
   /* For browsers that do not support gradients */
   /* For Safari 5.1 to 6.0 */
   /* For Opera 11.1 to 12.0 */
   /* For Firefox 3.6 to 15 */
-  background: -webkit-gradient(linear, left top, right bottom, from(#007bff), to(#007bff));
-  background: linear-gradient(to bottom right, #007bff, #007bff);
+  background: -webkit-gradient(linear, left top, right bottom, from(#16489f), to(#16489f));
+  background: linear-gradient(to bottom right, #16489f, #16489f);
   /* Standard syntax */
   -webkit-transition: .5s;
   transition: .5s; }
@@ -378,10 +378,10 @@ article:after,
   background-color: #28a745; }
 
 .bg-blue {
-  background-color: #007bff; }
+  background-color: #16489f; }
 
 .bg-pattern {
-  background-image: url(../images/banners/bg-pattern.svg), linear-gradient(135deg, #007bff, #0062cc);
+  background-image: url(../images/banners/bg-pattern.svg), linear-gradient(135deg, #16489f, #0062cc);
   background-size: cover, auto;
   background-repeat: no-repeat, repeat;
   background-position: 0px 0px, 50% 50%; }
@@ -411,8 +411,8 @@ article:after,
     /* For Safari 5.1 to 6.0 */
     /* For Opera 11.1 to 12.0 */
     /* For Firefox 3.6 to 15 */
-    background: -webkit-gradient(linear, left top, right bottom, from(#007bff), to(#6c757d));
-    background: linear-gradient(to bottom right, #007bff, #6c757d);
+    background: -webkit-gradient(linear, left top, right bottom, from(#16489f), to(#6c757d));
+    background: linear-gradient(to bottom right, #16489f, #6c757d);
     /* Standard syntax */ }
   .overlay-grad:hover:before {
     opacity: .9; }
@@ -2243,7 +2243,7 @@ ul.row, ul.row-sm {
   border-top: 0;
   border-bottom: 0; }
 .shopping-cart-wrap .price {
-  color: #007bff;
+  color: #16489f;
   font-size: 18px;
   font-weight: bold;
   margin-right: 5px;

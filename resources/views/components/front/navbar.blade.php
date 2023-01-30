@@ -3,7 +3,7 @@
     <div class="row align-items-center">
       <div class="col-lg-3">
         <div class="brand-wrap">
-          <img class="logo" src="{{ asset("images/logos/logo.svg") }}">
+          <a href="{{ route('home') }}"><img class="logo" src="{{ asset("images/logos/logo.svg") }}"></a>
           {{-- <h2 class="logo-text">LOGO</h2> --}}
         </div>
         <!-- brand-wrap.// -->
@@ -57,7 +57,7 @@
 
 
               <hr class="dropdown-divider">
-              <a class="dropdown-item" href="#">Have account? Sign up</a>
+              <a class="dropdown-item" href="{{ route('regster') }}">Have account? Sign up</a>
               <a class="dropdown-item" href="#">Forgot password?</a>
             </div>
             <!--  dropdown-menu .// -->
@@ -85,7 +85,7 @@
     <div class="navbar-collapse collapse" id="main_nav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link pl-0" href="#"> <strong>All category</strong></a>
+          <a class="nav-link pl-0" href="{{ route('shop') }}"> <strong>All category</strong></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Fashion</a>

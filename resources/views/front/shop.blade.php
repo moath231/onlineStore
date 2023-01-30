@@ -2,12 +2,12 @@
 
   <section class="section-pagetop bg">
     <div class="container">
-      <h2 class="title-page">Category products</h2>
+      <h2 class="title-page">shop</h2>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item"><a href="#">Best category</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Great articles</li>
+          <li class="breadcrumb-item"><a href="#">shop</a></li>
+          <li class="breadcrumb-item active" aria-current="page">all product</li>
         </ol>
       </nav>
     </div> <!-- container //  -->
