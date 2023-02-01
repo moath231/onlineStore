@@ -22,13 +22,9 @@ class Product extends Model
         return $this->BelongsTo(Brand::class);
     }
 
-    public function orders()
+    public function order()
     {
-        return $this->belongsToMany(Order::class);
+        return $this->belongsTo(Order::class);
     }
 
-    public function users()
-    {
-        return $this->belongsTo(User::class);
-    }
 }
