@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Product;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -20,7 +19,6 @@ class OrderFactory extends Factory
     {
         return [
             'user_id' => User::factory(),
-            'product_id' => Product::factory(),
             'order_date' => fake()->dateTimeBetween('-30 days', 'now'),
             'order_status' => fake()->randomElement(['pending', 'confirmed', 'shipped', 'delivered']),
         ];

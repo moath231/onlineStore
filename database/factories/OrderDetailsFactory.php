@@ -21,7 +21,9 @@ class OrderDetailsFactory extends Factory
         return [
             'order_id'=> Order::factory(),
             'product_id'=>Product::factory(),
-            'quantity'=>fake()->randomNumber(3)
+            'quantity'=>fake()->randomNumber(3),
+            'price'=>fake()->randomNumber(3),
+            'total'=>fake()->randomNumber(3),
         ];
     }
 }

@@ -11,7 +11,6 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->foreignId('product_id');
             $table->dateTime('order_date');
             $table->enum('order_status', ['pending', 'confirmed', 'shipped', 'delivered']);
             $table->timestamps();

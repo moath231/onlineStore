@@ -22,9 +22,9 @@ class Product extends Model
         return $this->BelongsTo(Brand::class);
     }
 
-    public function order()
+    public function orderDetail()
     {
-        return $this->belongsTo(Order::class);
+        return $this->hasMany(OrderDetails::class);
     }
 
 }
