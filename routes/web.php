@@ -27,3 +27,18 @@ Route::get('/register', function () {
     $title = 'register';
     return view('auth.signUp',compact('title'));
 })->name('regster');
+
+Route::get('/admin', function () {
+    $title = 'dashbord';
+    return view('admin.index',compact('title'));
+})->name('admin');
+
+Route::get('/admin/product', function () {
+    $title = 'admin product';
+    return view('admin.product.index',compact('title'));
+})->name('admin.product');
+
+Route::get('/admin/product/create', function () {
+    $title = 'admin product';
+    return view('admin.product.create',compact('title'));
+})->name('admin.product.create');

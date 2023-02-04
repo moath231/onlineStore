@@ -1,0 +1,1 @@
+<span class="badge badge-pill badge-danger">Danger</span>
