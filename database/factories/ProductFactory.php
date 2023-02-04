@@ -20,7 +20,9 @@ class ProductFactory extends Factory
     {
         return [
             'name'=>fake()->name(),
-            'description'=>fake()->sentence(),
+            'slug'=>fake()->slug(),
+            'shortDescription'=>fake()->sentence(),
+            'longDescription'=>fake()->sentence(),
             'price'=>fake()->randomNumber(2),
             'stock'=>fake()->randomNumber(2),
             'model'=>fake()->randomNumber(2),
@@ -30,6 +32,7 @@ class ProductFactory extends Factory
             'image1'=>fake()->image(),
             'image2'=>fake()->image(),
             'image3'=>fake()->image(),
+            'is_delete'=>fake()->boolean(),
             'category_id'=>Category::factory(),
             'brand_id'=>Brand::factory()
         ];

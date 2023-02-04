@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\adminController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,17 +30,6 @@ Route::get('/register', function () {
     return view('auth.signUp',compact('title'));
 })->name('regster');
 
-Route::get('/admin', function () {
-    $title = 'dashbord';
-    return view('admin.index',compact('title'));
-})->name('admin');
+Route::resource('admin',adminController::class)->only('index');
 
-Route::get('/admin/product', function () {
-    $title = 'admin product';
-    return view('admin.product.index',compact('title'));
-})->name('admin.product');
-
-Route::get('/admin/product/create', function () {
-    $title = 'admin product';
-    return view('admin.product.create',compact('title'));
-})->name('admin.product.create');
+Route::resource('admin/product',ProductController::class);

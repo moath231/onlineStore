@@ -6,4 +6,7 @@
     rows="4"
     {{  $attributes(['value'=> old($name)])  }}
   ></textarea>
+
+  <x-form.error name="{{ $name }}"/>
+
 </div>

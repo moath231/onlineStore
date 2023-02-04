@@ -1,5 +1,5 @@
 <nav class="app-header">
-  <a class="app-header__logo" href="{{ route('admin') }}"> admin</a>
+  <a class="app-header__logo" href="{{ route('admin.index') }}"> admin</a>
   <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar">
   </a>
   <ul class="app-nav">

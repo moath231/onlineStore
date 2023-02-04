@@ -8,7 +8,7 @@
   </div>
   <ul class="app-menu">
     <li>
-      <a class="app-menu__item active" href="{{ route('admin') }}">
+      <a class="app-menu__item active" href="{{ route('admin.index') }}">
         <i class="app-menu__icon fa fa-dashboard"></i>
         <span class="app-menu__label">Dashboard</span>
       </a>
@@ -21,13 +21,13 @@
       </a>
       <ul class="treeview-menu">
         <li>
-          <a class="treeview-item" href="{{ route('admin.product') }}">
+          <a class="treeview-item" href="{{ route('product.index') }}">
             <i class="icon fa fa-circle-o"></i>
             All
           </a>
         </li>
         <li>
-          <a class="treeview-item" href="{{ route('admin.product.create') }}" rel="noopener">
+          <a class="treeview-item" href="{{ route('product.create') }}" rel="noopener">
             <i class="icon fa fa-circle-o"></i>
             add new product
           </a>
