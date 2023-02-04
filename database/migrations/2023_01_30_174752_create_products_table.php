@@ -16,12 +16,13 @@ return new class extends Migration
             $table->decimal('price', 8, 2);
             $table->integer('stock');
             $table->string('model');
-            $table->string('color');
+            $table->string('color')->nullable();
             $table->string('size');
             $table->string('mainImage');
-            $table->string('image1');
-            $table->string('image2');
-            $table->string('image3');
+            $table->string('image1')->nullable();
+            $table->string('image2')->nullable();
+            $table->string('image3')->nullable();
+            $table->boolean('is_delete')->default(0);
             $table->foreignId('category_id');
             $table->foreignId('brand_id');
             $table->timestamps();
