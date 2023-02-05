@@ -4,6 +4,7 @@
   <textarea
     class="form-control"
     rows="4"
+    name="{{ $name }}"
     {{  $attributes(['value'=> old($name)])  }}
   ></textarea>
 

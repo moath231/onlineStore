@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('stock');
             $table->string('model');
             $table->string('color')->nullable();
-            $table->string('size');
+            $table->string('size')->nullable();
             $table->string('mainImage');
             $table->string('image1')->nullable();
             $table->string('image2')->nullable();

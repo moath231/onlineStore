@@ -23,7 +23,7 @@
                 <x-form.input name="Model" placeholder="model" />
               </div>
               <div class="col-md-3">
-                <x-form.input name="Color" placeholder="color" />
+                <x-form.input name="Color" placeholder="color" type="color" />
               </div>
               <div class="col-md-3">
                 <x-form.input name="Size" placeholder="size" />

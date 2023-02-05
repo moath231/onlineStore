@@ -37,7 +37,7 @@
                     <td>{{ $p->price }}</td>
                     <td>{{ $p->stock }}</td>
                     <td>{{ $p->model }}</td>
-                    <td>{{ $p->color }}</td>
+                    <td style="color: {{ $p->color }}">{{ $p->color }}</td>
                     <td>{{ $p->size }}</td>
                     <td><img src="{{ asset('images/brand.png') }}" alt="" width="55"></td>
                     <td><img src="{{ asset('images/brand.png') }}" alt="" width="55"></td>
