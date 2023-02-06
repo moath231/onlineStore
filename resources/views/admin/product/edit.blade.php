@@ -7,8 +7,9 @@
       <div class="tile">
         <div class="tile-body">
 
-          <form method="POST" action="{{ route('product.store') }}" enctype="multipart/form-data">
+          <form method="POST" action="/admin/product/{{ $product->id }}" enctype="multipart/form-data">
             @csrf
+            @method('PATCH')
             <x-form.input name="Name" placeholder="Name product" value="{{ $product->name }}"/>
             <x-form.textarea name="Discrption" placeholder="Short Discrption" >
               {{ $product->shortDescription }}
@@ -17,7 +18,6 @@
             <x-form.textarea name="longDiscrption" placeholder="Long Discrption">
               {{ $product->longDescription }}
             </x-form.textarea>
-            
 
             <div class="row">
               <div class="col-md-3">
@@ -57,7 +57,7 @@
                     <label class="sr-only" for="price">Amount (in dollars)</label>
                     <div class="input-group">
                       <div class="input-group-prepend"><span class="input-group-text">$</span></div>
-                      <input class="form-control" id="price" type="text" name="price" placeholder="Amount" value="{{ old('price') ?  $product->price : '' }}">
+                      <input class="form-control" id="price" type="text" name="price" placeholder="Amount" value="{{ $product->price  }}">
                       <x-form.error name="price" />
                       <div class="input-group-append"><span class="input-group-text">.00</span></div>
                     </div>
@@ -68,9 +68,10 @@
                 <div class="form-group">
                   <label for="category">Category</label>
                   <select name="category" class="form-control" id="category">
-                    <option disabled selected value="">choose</option>
+                    <option disabled  value="">choose</option>
+                    <option selected value="{{ $product->category->id }}"  {{ $product->category->id ? 'selected' : '' }} >{{ $product->category->name }}</option>
                     @foreach (App\Models\Category::all() as $category)
-                      <option value="{{ $category->id }}" {{ old('category') == $category->id ? 'selected' : '' }} >{{ $category->name }}</option>
+                      <option value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach
                   </select>
                   <x-form.error name="category" />
@@ -80,9 +81,10 @@
                 <div class="form-group">
                   <label for="brand">Brand</label>
                   <select name="brand" class="form-control" id="brand">
-                    <option disabled selected value="">choose</option>
+                    <option disabled value="">choose</option>
+                    <option selected value="{{ $product->brand->id }}" {{ $product->brand->id ? 'selected' : '' }} >{{ $product->brand->name }}</option>
                     @foreach (App\Models\Brand::all() as $brand)
-                      <option value="{{ $brand->id }}" {{ old('brand') == $brand->id ? 'selected' : '' }} >{{ $brand->name }}</option>
+                      <option value="{{ $brand->id }}" >{{ $brand->name }}</option>
                     @endforeach
                   </select>
                   <x-form.error name="brand" />
