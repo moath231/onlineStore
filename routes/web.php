@@ -33,3 +33,5 @@ Route::get('/register', function () {
 Route::resource('admin',adminController::class)->only('index');
 
 Route::resource('admin/product',ProductController::class);
+Route::post('admin/product/approve/{id}', [ProductController::class, 'approve']);
+Route::post('admin/product/hide/{id}', [ProductController::class, 'hide']);

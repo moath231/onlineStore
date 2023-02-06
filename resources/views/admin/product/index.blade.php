@@ -2,6 +2,13 @@
 
   <x-back.headerpage tablename="producr table" tablediscrption="Table to display all product" />
 
+  @if(session('success'))
+    <div class="alert alert-success">
+        <x-Indicators.alertS success="{{ session('success') }}"/>
+    </div>
+  @endif
+
+
   <div class="row">
     <div class="col-md-12">
       <div class="tile">
@@ -55,11 +62,22 @@
                     </td>
                     <td>
                       @if ($p->is_delete == 0)
-                        <a class="btn btn-danger text-white" type="button">Delete</a>
+                      <form action="product/{{ $p->id }}" method="Post">
+                        @csrf
+                        @method('DELETE')
+                        <input class="btn btn-danger text-white" type="submit" value="Delete">
+                      </form>
+                      <form action="/admin/product/hide/{{ $p->id }}" method="Post">
+                        @csrf
+                        <input class="btn btn-warning text-white" type="submit" value="hide">
+                      </form>
                       @else
-                        <a class="btn btn-success text-white" type="button">Approve</a>
+                      <form action="/admin/product/approve/{{ $p->id }}" method="Post">
+                        @csrf
+                        <input class="btn btn-success text-white" type="submit" value="Approve">
+                      </form>
                       @endif
-                      <a class="btn btn-info text-white" type="button">Edit</a>
+                      <a class="btn btn-info text-white" type="button" href="/admin/product/{{ $p->id }}/edit">Edit</a>
                     </td>
                   </tr>
                 @endforeach

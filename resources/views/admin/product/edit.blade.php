@@ -1,7 +1,7 @@
 <x-back.back :title="$title">
 
   <x-back.headerpage tablename="add new product" tablediscrption="form to add new product" />
-
+  
   <div class="row">
     <div class="col-md-12">
       <div class="tile">
@@ -9,24 +9,28 @@
 
           <form method="POST" action="{{ route('product.store') }}" enctype="multipart/form-data">
             @csrf
-            <x-form.input name="Name" placeholder="Name product" />
-            <x-form.textarea name="Discrption" placeholder="Short Discrption" />
+            <x-form.input name="Name" placeholder="Name product" value="{{ $product->name }}"/>
+            <x-form.textarea name="Discrption" placeholder="Short Discrption" >
+              {{ $product->shortDescription }}
+            </x-form.textarea>
 
-            <x-form.textarea name="longDiscrption" placeholder="Long Discrption" />
-            {{-- price --}}
+            <x-form.textarea name="longDiscrption" placeholder="Long Discrption">
+              {{ $product->longDescription }}
+            </x-form.textarea>
+            
 
             <div class="row">
               <div class="col-md-3">
-                <x-form.input name="Stock" placeholder="stock" />
+                <x-form.input name="Stock" placeholder="stock" value="{{ $product->stock }}"/>
               </div>
               <div class="col-md-3">
-                <x-form.input name="Model" placeholder="model" />
+                <x-form.input name="Model" placeholder="model" value="{{ $product->model }}"/>
               </div>
               <div class="col-md-3">
-                <x-form.input name="Color" placeholder="color" type="color" />
+                <x-form.input name="Color" placeholder="color" type="color" value="{{ $product->color }}"/>
               </div>
               <div class="col-md-3">
-                <x-form.input name="Size" placeholder="size" />
+                <x-form.input name="Size" placeholder="size" value="{{ $product->size }}"/>
               </div>
             </div>
 
@@ -53,11 +57,11 @@
                     <label class="sr-only" for="price">Amount (in dollars)</label>
                     <div class="input-group">
                       <div class="input-group-prepend"><span class="input-group-text">$</span></div>
-                      <input class="form-control" id="price" type="text" name="price" placeholder="Amount" value="{{ old('price') }}">
+                      <input class="form-control" id="price" type="text" name="price" placeholder="Amount" value="{{ old('price') ?  $product->price : '' }}">
+                      <x-form.error name="price" />
                       <div class="input-group-append"><span class="input-group-text">.00</span></div>
                     </div>
                   </div>
-                  <x-form.error name="price" />
                 </div>
               </div>
               <div class="col-md-3">
