@@ -5,25 +5,26 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class ProductController extends Controller
 {
-    public function index()
+    function index()
     {
         $title = 'admin product';
         $product = Product::all();
         return view('admin.product.index', compact('title', 'product'));
     }
 
-    public function create()
+    function create()
     {
         $title = 'admin product';
         return view('admin.product.create', compact('title'));
     }
 
-    public function store(Request $request)
+    function store(Request $request)
     {
-        $validatedData = $request->validate([
+        $request->validate([
             'Name' => 'required',
             'Discrption' => 'required|min:45|max:70|unique:products,shortDescription',
             'longDiscrption' => 'required|min:200',
@@ -39,35 +40,38 @@ class ProductController extends Controller
             'category' => 'required',
             'brand' => 'required',
         ]);
-
-        // if (request()->file('image1')) {
-        //     $image1 = request()->file('image1');
-        //     $filename = $image1->getCTime() . $image1->getClientOriginalName();
-        //     $path = 'storage/app/' . $image1->storeAs('images', $filename);
-        //     $product->mainImage = $request->file('image1');
-        // }
-        // if (request()->file('image2')) {
-        //     $image2 = request()->file('image2');
-        //     $filename = $image2->getCTime() . $image2->getClientOriginalName();
-        //     $path = 'storage/app/' . $image2->storeAs('images', $filename);
-        //     $product->image1 = $request->file('image2');
-        // }
-        // if (request()->file('image3')) {
-        //     $image3 = request()->file('image3');
-        //     $filename = $image3->getCTime() . $image3->getClientOriginalName();
-        //     $path = 'storage/app/' . $image3->storeAs('images', $filename);
-        //     $product->image2 = $request->file('image3');
-        // }
-        // if (request()->file('image4')) {
-        //     $image4 = request()->file('image4');
-        //     $filename = $image4->getCTime() . $image4->getClientOriginalName();
-        //     $path = 'storage/app/' . $image4->storeAs('images', $filename);
-        //     $product->image3 = $request->file('image4');
-        // }
+        $product = new Product();
+        if (request()->file('image1')) {
+            $image1 = $request->file('image1');
+            $filename = $image1->getCTime() . '.' . $image1->getClientOriginalExtension();
+            $path = $image1->storeAs('public/images', $filename);
+            $path = str_replace('public', 'storage', $path);
+            $product->mainImage = $path;
+        }
+        if (request()->file('image2')) {
+            $image2 = request()->file('image2');
+            $filename = $image2->getCTime() . '.' . $image2->getClientOriginalExtension();
+            $path = $image2->storeAs('public/images', $filename);
+            $path = str_replace('public', 'storage', $path);
+            $product->image1 = $path;
+        }
+        if (request()->file('image3')) {
+            $image3 = request()->file('image3');
+            $filename = $image3->getCTime() . '.' . $image3->getClientOriginalExtension();
+            $path = $image3->storeAs('public/images', $filename);
+            $path = str_replace('public', 'storage', $path);
+            $product->image2 = $path;
+        }
+        if (request()->file('image4')) {
+            $image4 = request()->file('image4');
+            $filename = $image4->getCTime() . '.' . $image4->getClientOriginalExtension();
+            $path = $image4->storeAs('public/images', $filename);
+            $path = str_replace('public', 'storage', $path);
+            $product->image3 = $path;
+        }
 
         $slug = Str::slug($request->Discrption, '-');
 
-        $product = new Product();
         $product->name = $request->Name;
         $product->slug = $slug;
         $product->shortDescription = $request->Discrption;
@@ -76,7 +80,6 @@ class ProductController extends Controller
         $product->model = $request->Model;
         $product->color = $request->Color;
         $product->size = $request->Size;
-        $product->mainImage = $request->image1;
         $product->price = $request->price;
         $product->category_id = $request->category;
         $product->brand_id = $request->brand;
@@ -88,24 +91,24 @@ class ProductController extends Controller
             ->with('success', 'Product created successfully');
     }
 
-    public function show($id)
+    function show($id)
     {
         //
     }
 
-    public function edit($id)
+    function edit($id)
     {
         $title = 'edit product';
         $product = Product::findOrFail($id);
         return view('admin.product.edit', compact('title', 'product'));
     }
 
-    public function update(Request $request, $id)
+    function update(Request $request, $id)
     {
         $product = Product::findOrFail($id);
         $validatedData = $request->validate([
             'Name' => 'required',
-            'Discrption' => 'required|min:45|max:70|unique:products,shortDescription',
+            'Discrption' => ['required', 'min:45', 'max:70', Rule::unique('products', 'shortDescription')->ignore($product)],
             'longDiscrption' => 'required|min:200',
             'Stock' => 'required',
             'Model' => 'required',
@@ -120,7 +123,36 @@ class ProductController extends Controller
             'brand' => 'required',
         ]);
 
-        $product->name =$validatedData['Name'];
+        if (request()->file('image1')) {
+            $image1 = $request->file('image1');
+            $filename = $image1->getCTime() . '.' . $image1->getClientOriginalExtension();
+            $path = $image1->storeAs('public/images', $filename);
+            $path = str_replace('public', 'storage', $path);
+            $product->mainImage = $path;
+        }
+        if (request()->file('image2')) {
+            $image2 = request()->file('image2');
+            $filename = $image2->getCTime() . '.' . $image2->getClientOriginalExtension();
+            $path = $image2->storeAs('public/images', $filename);
+            $path = str_replace('public', 'storage', $path);
+            $product->image1 = $path;
+        }
+        if (request()->file('image3')) {
+            $image3 = request()->file('image3');
+            $filename = $image3->getCTime() . '.' . $image3->getClientOriginalExtension();
+            $path = $image3->storeAs('public/images', $filename);
+            $path = str_replace('public', 'storage', $path);
+            $product->image2 = $path;
+        }
+        if (request()->file('image4')) {
+            $image4 = request()->file('image4');
+            $filename = $image4->getCTime() . '.' . $image4->getClientOriginalExtension();
+            $path = $image4->storeAs('public/images', $filename);
+            $path = str_replace('public', 'storage', $path);
+            $product->image3 = $path;
+        }
+
+        $product->name = $validatedData['Name'];
         $product->shortDescription = $validatedData['Discrption'];
         $product->longDescription = $validatedData['longDiscrption'];
         $product->stock = $validatedData['Stock'];
@@ -133,11 +165,12 @@ class ProductController extends Controller
 
         $product->save();
 
-
-        return redirect()->route('product.index')->with('success', 'Product update successfully');;
+        return redirect()
+            ->route('product.index')
+            ->with('success', 'Product update successfully');
     }
 
-    public function destroy($id)
+    function destroy($id)
     {
         $product = Product::findOrFail($id);
 
@@ -148,7 +181,7 @@ class ProductController extends Controller
             ->with('success', 'Product deleted successfully');
     }
 
-    public function approve($id)
+    function approve($id)
     {
         $product = Product::findOrFail($id);
 
@@ -158,7 +191,7 @@ class ProductController extends Controller
         return redirect()->route('product.index');
     }
 
-    public function hide($id)
+    function hide($id)
     {
         $product = Product::findOrFail($id);
 

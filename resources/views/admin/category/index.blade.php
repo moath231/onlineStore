@@ -34,7 +34,7 @@
                 <th>botton</th>
               </tr>
             </thead>
-            <tbody>
+            {{-- <tbody>
               @if (count($product) > 0)
                 @foreach ($product as $p)
                   <tr>
@@ -62,27 +62,27 @@
                     </td>
                     <td>
                       @if ($p->is_delete == 0)
-                      <form action="product/{{ $p->id }}" method="Post">
+                      <form action="product/{{  }}" method="Post">
                         @csrf
                         @method('DELETE')
                         <input class="btn btn-danger text-white" type="submit" value="Delete">
                       </form>
-                      <form action="/admin/product/hide/{{ $p->id }}" method="Post">
+                      <form action="/admin/product/hide/{{  }}" method="Post">
                         @csrf
                         <input class="btn btn-warning text-white" type="submit" value="hide">
                       </form>
                       @else
-                      <form action="/admin/product/approve/{{ $p->id }}" method="Post">
+                      <form action="/admin/product/approve/{{  }}" method="Post">
                         @csrf
                         <input class="btn btn-success text-white" type="submit" value="Approve">
                       </form>
                       @endif
-                      <a class="btn btn-info text-white" type="button" href="/admin/product/{{ $p->id }}/edit">Edit</a>
+                      <a class="btn btn-info text-white" type="button" href="/admin/product/{{  }}/edit">Edit</a>
                     </td>
                   </tr>
                 @endforeach
               @endif
-            </tbody>
+            </tbody> --}}
           </table>
         </div>
       </div>
