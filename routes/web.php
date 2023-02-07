@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\adminController;
+use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,3 +37,7 @@ Route::resource('admin',adminController::class)->only('index');
 Route::resource('admin/product',ProductController::class);
 Route::post('admin/product/approve/{id}', [ProductController::class, 'approve']);
 Route::post('admin/product/hide/{id}', [ProductController::class, 'hide']);
+
+
+Route::resource('admin/category',CategoryController::class);
+Route::resource('admin/brand',BrandController::class);

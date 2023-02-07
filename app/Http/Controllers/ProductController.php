@@ -44,28 +44,28 @@ class ProductController extends Controller
         if (request()->file('image1')) {
             $image1 = $request->file('image1');
             $filename = $image1->getCTime() . '.' . $image1->getClientOriginalExtension();
-            $path = $image1->storeAs('public/images', $filename);
+            $path = $image1->storeAs('public/images/product', $filename);
             $path = str_replace('public', 'storage', $path);
             $product->mainImage = $path;
         }
         if (request()->file('image2')) {
             $image2 = request()->file('image2');
             $filename = $image2->getCTime() . '.' . $image2->getClientOriginalExtension();
-            $path = $image2->storeAs('public/images', $filename);
+            $path = $image2->storeAs('public/images/product', $filename);
             $path = str_replace('public', 'storage', $path);
             $product->image1 = $path;
         }
         if (request()->file('image3')) {
             $image3 = request()->file('image3');
             $filename = $image3->getCTime() . '.' . $image3->getClientOriginalExtension();
-            $path = $image3->storeAs('public/images', $filename);
+            $path = $image3->storeAs('public/images/product', $filename);
             $path = str_replace('public', 'storage', $path);
             $product->image2 = $path;
         }
         if (request()->file('image4')) {
             $image4 = request()->file('image4');
             $filename = $image4->getCTime() . '.' . $image4->getClientOriginalExtension();
-            $path = $image4->storeAs('public/images', $filename);
+            $path = $image4->storeAs('public/images/product', $filename);
             $path = str_replace('public', 'storage', $path);
             $product->image3 = $path;
         }
@@ -126,28 +126,28 @@ class ProductController extends Controller
         if (request()->file('image1')) {
             $image1 = $request->file('image1');
             $filename = $image1->getCTime() . '.' . $image1->getClientOriginalExtension();
-            $path = $image1->storeAs('public/images', $filename);
+            $path = $image1->storeAs('public/images/product', $filename);
             $path = str_replace('public', 'storage', $path);
             $product->mainImage = $path;
         }
         if (request()->file('image2')) {
             $image2 = request()->file('image2');
             $filename = $image2->getCTime() . '.' . $image2->getClientOriginalExtension();
-            $path = $image2->storeAs('public/images', $filename);
+            $path = $image2->storeAs('public/images/product', $filename);
             $path = str_replace('public', 'storage', $path);
             $product->image1 = $path;
         }
         if (request()->file('image3')) {
             $image3 = request()->file('image3');
             $filename = $image3->getCTime() . '.' . $image3->getClientOriginalExtension();
-            $path = $image3->storeAs('public/images', $filename);
+            $path = $image3->storeAs('public/images/product', $filename);
             $path = str_replace('public', 'storage', $path);
             $product->image2 = $path;
         }
         if (request()->file('image4')) {
             $image4 = request()->file('image4');
             $filename = $image4->getCTime() . '.' . $image4->getClientOriginalExtension();
-            $path = $image4->storeAs('public/images', $filename);
+            $path = $image4->storeAs('public/images/product', $filename);
             $path = str_replace('public', 'storage', $path);
             $product->image3 = $path;
         }

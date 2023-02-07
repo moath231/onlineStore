@@ -23,20 +23,20 @@
               </tr>
             </thead>
             <tbody>
-              @if (count($category) > 0)
-                @foreach ($category as $c)
+              @if (count($brand) > 0)
+                @foreach ($brand as $b)
                   <tr>
-                    <td>{{ $c->name }}</td>
-                    <td>{{ $c->description }}</td>
-                    <td><img src="{{ asset($c->logo) }}" alt="" width="55"></td>
+                    <td>{{ $b->name }}</td>
+                    <td>{{ $b->description }}</td>
+                    <td><img src="{{ asset($b->logo) }}" alt="" width="55"></td>
 
                     <td>
-                      <form action="/admin/category/{{ $c->id }}" method="Post">
+                      <form action="/admin/brand/{{ $b->id }}" method="Post">
                         @csrf
                         @method('DELETE')
                         <input class="btn btn-danger text-white" type="submit" value="Delete">
                       </form>
-                      <a class="btn btn-info text-white" type="button" href="/admin/category/{{ $c->id }}/edit">Edit</a>
+                      <a class="btn btn-info text-white" type="button" href="/admin/brand/{{ $b->id }}/edit">Edit</a>
                     </td>
                   </tr>
                 @endforeach
