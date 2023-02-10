@@ -22,19 +22,27 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(10)->create();
+        // User::factory(10)->create();
+
+        // $this->call(\Lwwcas\LaravelCountries\Database\Seeders\LcDatabaseSeeder::class);
 
         // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
+        //     'FirstName' => 'moath',
+        //     'LastName' => 'ababneh',
+        //     'email' => 'test@test.com',
+        //     'gender' => 'male',
+        //     'address' => 'irbid',
+        //     'country' => 'jordan',
+        //     'city' => 'irbid',
+        //     'password'=>bcrypt('password')
         // ]);
 
-        Category::factory(10)->create();
-        Brand::factory(10)->create();
-        Product::factory(5)->create();
-        Order::factory(5)->create();
-        OrderDetails::factory(5)->create();
-        Shipping::factory(5)->create();
+        // Category::factory(10)->create();
+        // Brand::factory(10)->create();
+        Product::factory(25)->create();
+        // Order::factory(5)->create();
+        // OrderDetails::factory(5)->create();
+        // Shipping::factory(5)->create();
 
     }
 }

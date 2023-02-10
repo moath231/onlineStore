@@ -120,7 +120,7 @@
     <div class="container">
 
         <header class="section-heading heading-line">
-            <h4 class="title-section bg">FEATURED PRODUCTS</h4>
+            <h4 class="title-section">FEATURED PRODUCTS</h4>
         </header>
         <div class="row">
             <div class="col-md-4">
@@ -226,7 +226,7 @@
   <section class="section-request padding-y-sm">
       <div class="container">
           <header class="section-heading heading-line">
-              <h4 class="title-section bg text-uppercase">Recently Added</h4>
+              <h4 class="title-section text-uppercase">Recently Added</h4>
           </header>
           <div class="row">
               <div class="col-md-3">

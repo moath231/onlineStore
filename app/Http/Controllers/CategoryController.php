@@ -34,7 +34,7 @@ class CategoryController extends Controller
         $category->description = $request->description;
         if (request()->file('logo')) {
             $image1 = $request->file('logo');
-            $filename = $image1->getCTime() . '.' . $image1->getClientOriginalExtension();
+            $filename = uniqid() . '.' . $image1->getClientOriginalExtension();
             $path = $image1->storeAs('public/images/category', $filename);
             $path = str_replace('public', 'storage', $path);
             $category->logo = $path;
@@ -72,7 +72,7 @@ class CategoryController extends Controller
         $category->description = $request->description;
         if (request()->file('logo')) {
             $image1 = $request->file('logo');
-            $filename = $image1->getCTime() . '.' . $image1->getClientOriginalExtension();
+            $filename = uniqid() . '.' . $image1->getClientOriginalExtension();
             $path = $image1->storeAs('public/images/category', $filename);
             $path = str_replace('public', 'storage', $path);
             $category->logo = $path;

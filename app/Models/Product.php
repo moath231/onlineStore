@@ -12,11 +12,7 @@ class Product extends Model
     use HasFactory;
 
     protected $guarded = [];
-
-    // public function validate($slug){
-
-    // }
-
+    
     public function category()
     {
         return $this->BelongsTo(Category::class);

@@ -10,7 +10,7 @@
           <li class="breadcrumb-item active" aria-current="page">all product</li>
         </ol>
       </nav>
-    </div> <!-- container //  -->
+    </div>
   </section>
 
   <section class="section-content padding-y">
@@ -47,9 +47,9 @@
                     <li><a href="#">People </a></li>
                   </ul>
 
-                </div> <!-- card-body.// -->
+                </div>
               </div>
-            </article> <!-- filter-group  .// -->
+            </article>
             <article class="filter-group">
               <header class="card-header">
                 <a href="#" data-toggle="collapse" data-target="#collapse_2" aria-expanded="true" class="">
@@ -89,9 +89,9 @@
                       <b class="badge badge-pill badge-light float-right">30</b>
                     </div>
                   </label>
-                </div> <!-- card-body.// -->
+                </div>
               </div>
-            </article> <!-- filter-group .// -->
+            </article>
             <article class="filter-group">
               <header class="card-header">
                 <a href="#" data-toggle="collapse" data-target="#collapse_3" aria-expanded="true" class="">
@@ -111,11 +111,11 @@
                       <label>Max</label>
                       <input class="form-control" placeholder="$1,0000" type="number">
                     </div>
-                  </div> <!-- form-row.// -->
+                  </div>
                   <button class="btn btn-block btn-primary">Apply</button>
-                </div><!-- card-body.// -->
+                </div>
               </div>
-            </article> <!-- filter-group .// -->
+            </article>
             <article class="filter-group">
               <header class="card-header">
                 <a href="#" data-toggle="collapse" data-target="#collapse_4" aria-expanded="true"
@@ -145,9 +145,9 @@
                     <input type="checkbox">
                     <span class="btn btn-light"> XXL </span>
                   </label>
-                </div><!-- card-body.// -->
+                </div>
               </div>
-            </article> <!-- filter-group .// -->
+            </article>
             <article class="filter-group">
               <header class="card-header">
                 <a href="#" data-toggle="collapse" data-target="#collapse_5" aria-expanded="false"
@@ -177,12 +177,14 @@
                     <input type="radio" name="myfilter_radio" class="custom-control-input">
                     <div class="custom-control-label">Very old</div>
                   </label>
-                </div><!-- card-body.// -->
+                </div>
               </div>
-            </article> <!-- filter-group .// -->
-          </div> <!-- card.// -->
+            </article>
+          </div>
         </aside>
+
         <main class="col-md-9">
+
           <header class="border-bottom mb-4 pb-3">
             <div class="form-inline">
               <span class="mr-md-auto">32 Items found </span>
@@ -200,168 +202,40 @@
               </div>
             </div>
           </header>
+
           <div class="row">
-            <div class="col-md-4">
-              <figure class="card card-product-grid">
-                <div class="img-wrap">
-                  <span class="badge badge-danger"> NEW </span>
-                  <img src="images/items/1.jpg">
-                  <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i> Quick view</a>
-                </div>
-                <figcaption class="info-wrap">
-                  <div class="fix-height">
-                    <a href="#" class="title">Great item name goes here</a>
-                    <div class="price-wrap mt-2">
-                      <span class="price">$1280</span>
-                      <del class="price-old">$1980</del>
+            @if (count($Product) > 0)
+              @foreach ($Product as $pro)
+                <div class="col-md-4">
+                  <figure class="card card-product-grid">
+                    <div class="img-wrap">
+                      @if ($pro->created_at->diffIndays() <= 3)
+                        <span class="badge badge-danger"> NEW </span>
+                      @endif
+                      <img src="{{ asset($pro->mainImage) }}">
+                      <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i> Quick view</a>
                     </div>
-                  </div>
-                  <a href="#" class="btn btn-block btn-primary">Add to cart </a>
-                </figcaption>
-              </figure>
-            </div>
-
-            <div class="col-md-4">
-              <figure class="card card-product-grid">
-                <div class="img-wrap">
-                  <img src="images/items/2.jpg">
-                  <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i> Quick view</a>
+                    <figcaption class="info-wrap">
+                      <div class="fix-height">
+                        <a href="#" class="title">{{ $pro->name }}</a>
+                        <div class="price-wrap mt-2">
+                          <span class="price">${{ $pro->price }}</span>
+                          <del class="price-old">$1980</del>
+                        </div>
+                      </div>
+                      <a href="#" class="btn btn-block btn-primary">Add to cart </a>
+                    </figcaption>
+                  </figure>
                 </div>
-                <figcaption class="info-wrap">
-                  <div class="fix-height">
-                    <a href="#" class="title">Product name goes here just for demo item</a>
-                    <div class="price-wrap mt-2">
-                      <span class="price">$1280</span>
-                    </div>
-                  </div>
-                  <a href="#" class="btn btn-block btn-primary">Add to cart </a>
-                </figcaption>
-              </figure>
-            </div>
+              @endforeach
+            @endif
+          </div>
 
-            <div class="col-md-4">
-              <figure class="card card-product-grid">
-                <div class="img-wrap">
-                  <img src="images/items/3.jpg">
-                  <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i> Quick view</a>
-                </div>
-                <figcaption class="info-wrap">
-                  <div class="fix-height">
-                    <a href="#" class="title">Product name goes here just for demo item</a>
-                    <div class="price-wrap mt-2">
-                      <span class="price">$1280</span>
-                    </div>
-                  </div>
-                  <a href="#" class="btn btn-block btn-primary">Add to cart </a>
-                </figcaption>
-              </figure>
-            </div>
-
-            <div class="col-md-4">
-              <figure class="card card-product-grid">
-                <div class="img-wrap">
-                  <img src="images/items/4.jpg">
-                  <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i> Quick view</a>
-                </div>
-                <figcaption class="info-wrap">
-                  <div class="fix-height">
-                    <a href="#" class="title">Product name goes here just for demo item</a>
-                    <div class="price-wrap mt-2">
-                      <span class="price">$1280</span>
-                    </div>
-                  </div>
-                  <a href="#" class="btn btn-block btn-primary">Add to cart </a>
-                </figcaption>
-              </figure>
-            </div>
-
-            <div class="col-md-4">
-              <figure class="card card-product-grid">
-                <div class="img-wrap">
-                  <img src="images/items/5.jpg">
-                  <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i> Quick view</a>
-                </div>
-                <figcaption class="info-wrap">
-                  <div class="fix-height">
-                    <a href="#" class="title">Product name goes here just for demo item</a>
-                    <div class="price-wrap mt-2">
-                      <span class="price">$1280</span>
-                    </div>
-                  </div>
-                  <a href="#" class="btn btn-block btn-primary">Add to cart </a>
-                </figcaption>
-              </figure>
-            </div> <!-- col.// -->
-
-            <div class="col-md-4">
-              <figure class="card card-product-grid">
-                <div class="img-wrap">
-                  <img src="images/items/6.jpg">
-                  <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i> Quick view</a>
-                </div> <!-- img-wrap.// -->
-                <figcaption class="info-wrap">
-                  <div class="fix-height">
-                    <a href="#" class="title">Product name goes here just for demo item</a>
-                    <div class="price-wrap mt-2">
-                      <span class="price">$1280</span>
-                    </div> <!-- price-wrap.// -->
-                  </div>
-                  <a href="#" class="btn btn-block btn-primary">Add to cart </a>
-                </figcaption>
-              </figure>
-            </div> <!-- col.// -->
-
-            <div class="col-md-4">
-              <figure class="card card-product-grid">
-                <div class="img-wrap">
-                  <img src="images/items/7.jpg">
-                  <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i> Quick view</a>
-                </div> <!-- img-wrap.// -->
-                <figcaption class="info-wrap">
-                  <div class="fix-height">
-                    <a href="#" class="title">Product name goes here just for demo item</a>
-                    <div class="price-wrap mt-2">
-                      <span class="price">$1280</span>
-                    </div> <!-- price-wrap.// -->
-                  </div>
-                  <a href="#" class="btn btn-block btn-primary">Add to cart </a>
-                </figcaption>
-              </figure>
-            </div> <!-- col.// -->
-
-            <div class="col-md-4">
-              <figure class="card card-product-grid">
-                <div class="img-wrap">
-                  <img src="images/items/1.jpg">
-                  <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i> Quick view</a>
-                </div> <!-- img-wrap.// -->
-                <figcaption class="info-wrap">
-                  <div class="fix-height">
-                    <a href="#" class="title">Product name goes here just for demo item</a>
-                    <div class="price-wrap mt-2">
-                      <span class="price">$1280</span>
-                    </div> <!-- price-wrap.// -->
-                  </div>
-                  <a href="#" class="btn btn-block btn-primary">Add to cart </a>
-                </figcaption>
-              </figure>
-            </div> <!-- col.// -->
-          </div> <!-- row end.// -->
-
-          <nav class="mt-4" aria-label="Page navigation sample">
-            <ul class="pagination">
-              <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-              <li class="page-item active"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item"><a class="page-link" href="#">Next</a></li>
-            </ul>
-          </nav>
-
-        </main> <!-- col.// -->
+          {{ $Product->links('vendor.pagination.bootstrap-5') }}
+        </main>
 
       </div>
 
-    </div> <!-- container .//  -->
+    </div>
   </section>
 </x-front.front>

@@ -36,7 +36,7 @@ class BrandController extends Controller
 
         if (request()->file('logo')) {
             $image1 = $request->file('logo');
-            $filename = $image1->getCTime() . '.' . $image1->getClientOriginalExtension();
+            $filename = uniqid() . '.' . $image1->getClientOriginalExtension();
             $path = $image1->storeAs('public/images/brand', $filename);
             $path = str_replace('public', 'storage', $path);
             $category->logo = $path;
@@ -75,7 +75,7 @@ class BrandController extends Controller
 
         if (request()->file('logo')) {
             $image1 = $request->file('logo');
-            $filename = $image1->getCTime() . '.' . $image1->getClientOriginalExtension();
+            $filename = uniqid() . '.' . $image1->getClientOriginalExtension();
             $path = $image1->storeAs('public/images/brand', $filename);
             $path = str_replace('public', 'storage', $path);
             $category->logo = $path;

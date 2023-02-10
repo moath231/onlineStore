@@ -4,6 +4,9 @@ use App\Http\Controllers\adminController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ShopPage;
+use App\Http\Controllers\usersController;
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,15 +25,14 @@ Route::get('/', function () {
     return view('front.index',compact('title'));
 })->name('home');
 
-Route::get('/shop', function () {
-    $title = 'shoping';
-    return view('front.shop',compact('title'));
-})->name('shop');
+Route::get('/shop', [ShopPage::class,'index'])->name('shop');
 
-Route::get('/register', function () {
-    $title = 'register';
-    return view('auth.signUp',compact('title'));
-})->name('regster');
+
+Route::get('/register',[usersController::class,'index'])->name('regster');
+Route::post('/register',[usersController::class,'store']);
+Route::get('/logout',[usersController::class,'logout']);
+Route::post('/login',[usersController::class,'login']);
+
 
 Route::resource('admin',adminController::class)->only('index');
 

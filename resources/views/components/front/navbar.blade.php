@@ -3,7 +3,7 @@
     <div class="row align-items-center">
       <div class="col-lg-3">
         <div class="brand-wrap">
-          <a href="{{ route('home') }}"><img class="logo" src="{{ asset("images/logos/logo.svg") }}"></a>
+          <a href="{{ route('home') }}"><img class="logo" src="{{ asset('images/logos/logo.svg') }}"></a>
           {{-- <h2 class="logo-text">LOGO</h2> --}}
         </div>
         <!-- brand-wrap.// -->
@@ -37,43 +37,50 @@
             <a href="#" class="icontext ml-3" data-toggle="dropdown" data-offset="20,10">
               <div class="icon-wrap icon-xs bg2 round text-secondary"><i class="fa fa-user"></i></div>
               <div class="text-wrap loginPopupColor">
-                <small>Hello.</small>
-                <span>Login <i class="fa fa-caret-down"></i></span>
+                @auth
+                  <small>Welcome</small>
+                  <span>{{ Auth::user()->FirstName }} <i class="fa fa-caret-down"></i></span>
+                @else
+                  <small>Welcome</small>
+                  <span>login<i class="fa fa-caret-down"></i></span>
+                @endauth
               </div>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
 
-              <form class="px-4 py-3">
+              @auth
                 <div class="form-group">
-                  <label>Email address</label>
-                  <input type="email" class="form-control" placeholder="email@example.com">
+                  <a class="logout" href="/logout">logout</a>
                 </div>
-                <div class="form-group">
-                  <label>Password</label>
-                  <input type="password" class="form-control" placeholder="Password">
-                </div>
-                <button type="submit" class="btn btonstyle">Sign in</button>
-              </form>
+              @else
+                <form class="px-4 py-3" method="post" action="/login">
+                  @csrf
+                  <div class="form-group">
+                    <label>Email address</label>
+                    <input name="email" type="email" class="form-control" placeholder="email@example.com" autocomplete="off">
+                    @error('email')
+                      <div class="errorMessage mt-2">{{ $message }}</div>
+                    @enderror
+                  </div>
+                  <div class="form-group">
+                    <label>Password</label>
+                    <input name="password" type="password" class="form-control" placeholder="Password" autocomplete="off">
+                  </div>
+                  <button type="submit" class="btn btonstyle">Sign in</button>
 
+                </form>
+                <hr class="dropdown-divider">
+                <a class="dropdown-item" href="{{ route('regster') }}">Have account? Sign up</a>
+                <a class="dropdown-item" href="#">Forgot password?</a>
+              @endauth
 
-              <hr class="dropdown-divider">
-              <a class="dropdown-item" href="{{ route('regster') }}">Have account? Sign up</a>
-              <a class="dropdown-item" href="#">Forgot password?</a>
             </div>
-            <!--  dropdown-menu .// -->
           </div>
-          <!-- widget  dropdown.// -->
         </div>
-        <!-- widgets-wrap.// -->
       </div>
-      <!-- col.// -->
     </div>
-    <!-- row.// -->
   </div>
-  <!-- container.// -->
 </section>
-<!-- header-main .// -->
-{{-- #e9e9e9 --}}
 <nav class="navbar navbar-expand-lg navbar-dark">
   <div class="container">
 

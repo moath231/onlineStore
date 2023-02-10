@@ -2319,8 +2319,17 @@ ul.row, ul.row-sm {
     width: 0; }
 
 /* GRID STYLE PRODUCT ITEM */
-
-
+.errorMessage{
+  color: red;
+}
+.form-group .logout{
+  margin-left: 18px;
+  text-transform: capitalize;
+  color: black;
+}
+.form-group .logout:hover{
+  color: rgb(87, 86, 86);
+}
 /* ================= RATINGS ============== */
 .label-rating {
   margin-right: 10px;
