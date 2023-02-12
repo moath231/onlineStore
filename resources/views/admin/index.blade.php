@@ -41,6 +41,15 @@
       <div class="widget-small danger coloured-icon">
         <i class="icon fa fa-star fa-3x"></i>
         <div class="info">
+          <h4>Brand</h4>
+          <p><b>{{ $brandCount }}</b></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+      <div class="widget-small danger coloured-icon">
+        <i class="icon fa fa-star fa-3x"></i>
+        <div class="info">
           <h4>order</h4>
           <p><b>{{ $orderCount }}</b></p>
         </div>

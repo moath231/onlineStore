@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
@@ -17,7 +18,8 @@ class adminController extends Controller
         $categoryCount = Category::count('id');
         $UserCount = User::count('id');
         $orderCount = Order::count('id');
-        return view('admin.index', compact('title', 'ProductCount', 'categoryCount', 'UserCount', 'orderCount'));
+        $brandCount = Brand::count('id');
+        return view('admin.index', compact('title', 'ProductCount', 'categoryCount', 'UserCount', 'orderCount','brandCount'));
     }
 
     public function create()

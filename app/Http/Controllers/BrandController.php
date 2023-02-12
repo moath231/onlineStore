@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Brand;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class BrandController extends Controller
 {
@@ -25,13 +27,17 @@ class BrandController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'description' => 'required|min:16',
+            'description' => 'required|min:16|unique:brand,description',
             'logo' => 'required|image|mimes:png,jpg|max:2048',
         ]);
 
         $category = new Brand();
 
+        $slug = Str::slug($request->description, '-');
+
+
         $category->name = $request->name;
+        $category->slug = $slug;
         $category->description = $request->description;
 
         if (request()->file('logo')) {
@@ -62,13 +68,13 @@ class BrandController extends Controller
 
     public function update(Request $request, $id)
     {
+        $category = Brand::findOrFail($id);
+
         $request->validate([
             'name' => 'required',
-            'description' => 'required|min:16',
+            'description' => ['required','min:16',Rule::unique('brands','description')->ignore($category)],
             'logo' => 'image|mimes:png,jpg|max:2048',
         ]);
-
-        $category = Brand::findOrFail($id);
 
         $category->name = $request->name;
         $category->description = $request->description;

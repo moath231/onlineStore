@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class CategoryController extends Controller
 {
@@ -24,13 +26,16 @@ class CategoryController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'description' => 'required|min:16',
+            'description' => 'required|min:16|unique:categories,description',
             'logo' => 'required|image|mimes:png,jpg|max:2048',
         ]);
 
         $category = new Category();
 
+        $slug = Str::slug($request->description, '-');
+
         $category->name = $request->name;
+        $category->slug = $slug;
         $category->description = $request->description;
         if (request()->file('logo')) {
             $image1 = $request->file('logo');
@@ -60,13 +65,12 @@ class CategoryController extends Controller
 
     public function update(Request $request, $id)
     {
+        $category = Category::findOrFail($id);
         $request->validate([
             'name' => 'required',
-            'description' => 'required|min:16',
+            'description' => ['required','min:16',Rule::unique('categories','description')->ignore($category)],
             'logo' => 'image|mimes:png,jpg|max:2048',
         ]);
-
-        $category = Category::findOrFail($id);
 
         $category->name = $request->name;
         $category->description = $request->description;
