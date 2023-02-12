@@ -1,20 +1,20 @@
 <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
 <aside class="app-sidebar">
   <div class="app-sidebar__user">
-    <div>
+    <div class="mr-auto ml-auto">
       <p class="app-sidebar__user-name text-center">moath</p>
       <p class="app-sidebar__user-designation">fullstack Developer</p>
     </div>
   </div>
   <ul class="app-menu">
     <li>
-      <a class="app-menu__item active" href="{{ route('admin.index') }}">
+      <a class="app-menu__item {{  Request::is('admin') ? 'active' : '' }}" href="{{ route('admin.index') }}">
         <i class="app-menu__icon fa fa-dashboard"></i>
         <span class="app-menu__label">Dashboard</span>
       </a>
     </li>
     <li class="treeview">
-      <a class="app-menu__item" href="#" data-toggle="treeview">
+      <a class="app-menu__item {{  Request::is('admin/product') || Request::is('admin/product/create') ? 'active' : '' }}" href="#" data-toggle="treeview">
         <i class="app-menu__icon fa fa-product-hunt" aria-hidden="true"></i>
         <span class="app-menu__label">product</span>
         <i class="treeview-indicator fa fa-angle-right"></i>
@@ -35,7 +35,7 @@
       </ul>
     </li>
     <li class="treeview">
-      <a class="app-menu__item" href="#" data-toggle="treeview">
+      <a class="app-menu__item {{  Request::is('admin/category') || Request::is('admin/category/create') ? 'active' : '' }}" href="#" data-toggle="treeview">
         <i class="app-menu__icon fa fa-eercast" aria-hidden="true"></i>
         <span class="app-menu__label">category</span>
         <i class="treeview-indicator fa fa-angle-right"></i>
@@ -56,7 +56,7 @@
       </ul>
     </li>
     <li class="treeview">
-      <a class="app-menu__item" href="#" data-toggle="treeview">
+      <a class="app-menu__item {{  Request::is('admin/brand') || Request::is('admin/brand/create') ? 'active' : '' }}" href="#" data-toggle="treeview">
         <i class="app-menu__icon fa  fa-list-alt" aria-hidden="true"></i>
         <span class="app-menu__label">brand</span>
         <i class="treeview-indicator fa fa-angle-right"></i>
