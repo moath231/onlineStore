@@ -54,7 +54,7 @@
 </head>
 
 <body>
-  <div class="wrapper bg-dark-white">
+  <div class="wrapper bg-dark-white" id="products">
 
     <header id="sticky-menu" class="header header-2">
       <x-front.navbar/>

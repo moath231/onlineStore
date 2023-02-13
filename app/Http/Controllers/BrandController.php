@@ -27,27 +27,27 @@ class BrandController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'description' => 'required|min:16|unique:brand,description',
+            'description' => 'required|min:16|unique:brands,description',
             'logo' => 'required|image|mimes:png,jpg|max:2048',
         ]);
 
-        $category = new Brand();
+        $brands = new Brand();
 
         $slug = Str::slug($request->description, '-');
 
 
-        $category->name = $request->name;
-        $category->slug = $slug;
-        $category->description = $request->description;
+        $brands->name = $request->name;
+        $brands->slug = $slug;
+        $brands->description = $request->description;
 
         if (request()->file('logo')) {
             $image1 = $request->file('logo');
             $filename = uniqid() . '.' . $image1->getClientOriginalExtension();
             $path = $image1->storeAs('public/images/brand', $filename);
             $path = str_replace('public', 'storage', $path);
-            $category->logo = $path;
+            $brands->logo = $path;
         }
-        $category->save();
+        $brands->save();
 
         return redirect()
             ->route('brand.index')

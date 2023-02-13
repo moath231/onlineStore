@@ -1736,6 +1736,9 @@ article:after,
     .list-menu a:hover {
       color: #3167eb; }
 
+    .list-menu a.active {
+      color: #3167eb; }
+
     .form-noborder select.form-control-lg:not([size]):not([multiple]) {
       height: 2.875rem; }
 

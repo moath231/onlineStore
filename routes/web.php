@@ -3,10 +3,10 @@
 use App\Http\Controllers\adminController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Home;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShopPage;
 use App\Http\Controllers\usersController;
-use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,12 +20,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    $title = 'home';
-    return view('front.index',compact('title'));
-})->name('home');
+Route::get('/', [Home::class,'index'])->name('home');
 
-Route::get('/shop', [ShopPage::class,'index'])->name('shop');
+Route::get('shop', [ShopPage::class,'index'])->name('shop');
 
 
 Route::get('/register',[usersController::class,'index'])->name('regster');
@@ -42,4 +39,5 @@ Route::post('admin/product/hide/{id}', [ProductController::class, 'hide']);
 
 
 Route::resource('admin/category',CategoryController::class);
+
 Route::resource('admin/brand',BrandController::class);

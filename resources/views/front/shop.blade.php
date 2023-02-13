@@ -28,23 +28,40 @@
               </header>
               <div class="filter-content show collapse" id="collapse_1" style="">
                 <div class="card-body">
-                  <form class="pb-3">
+                  <form class="pb-3" method="GET" accept="">
+                    @if (request('category'))
+                      <input type="hidden" name="category" value="{{ request('category') }}">
+                    @endif
+
+                    @if (request('brand'))
+                      <input type="hidden" name="brand" value="{{ request('brand') }}">
+                    @endif
+
+                    @if (request('min'))
+                      <input type="hidden" name="min" value="{{ request('min') }}">
+                    @endif
+
+                    @if (request('max'))
+                      <input type="hidden" name="max" value="{{ request('max') }}">
+                    @endif
+
                     <div class="input-group">
-                      <input type="text" class="form-control" placeholder="Search">
+                      <input type="text" class="form-control" name="search" value="{{ $searchValue ?? '' }}"
+                        placeholder="Search">
                       <div class="input-group-append">
-                        <button class="btn btn-light" type="button"><i class="fa fa-search"></i></button>
+                        <button class="btn" type="submit"><i class="fa fa-search"></i></button>
                       </div>
                     </div>
                   </form>
 
                   <ul class="list-menu">
-                    <li><a href="#">People </a></li>
-                    <li><a href="#">Watches </a></li>
-                    <li><a href="#">Cinema </a></li>
-                    <li><a href="#">Clothes </a></li>
-                    <li><a href="#">Home items </a></li>
-                    <li><a href="#">Animals</a></li>
-                    <li><a href="#">People </a></li>
+                    @foreach ($category as $cate)
+                      <li>
+                        <a href="?category={{ $cate->slug }}&{{ htmlspecialchars(http_build_query(request()->except('category'))) }}"
+                          class="{{ $cate->slug == request('category') ? 'active' : '' }}">{{ $cate->name }}
+                        </a>
+                      </li>
+                    @endforeach
                   </ul>
 
                 </div>
@@ -59,39 +76,22 @@
               </header>
               <div class="filter-content show collapse" id="collapse_2" style="">
                 <div class="card-body">
-                  <label class="custom-control custom-checkbox">
-                    <input type="checkbox" checked="" class="custom-control-input">
-                    <div class="custom-control-label">Mercedes
-                      <b class="badge badge-pill badge-light float-right">120</b>
-                    </div>
-                  </label>
-                  <label class="custom-control custom-checkbox">
-                    <input type="checkbox" checked="" class="custom-control-input">
-                    <div class="custom-control-label">Toyota
-                      <b class="badge badge-pill badge-light float-right">15</b>
-                    </div>
-                  </label>
-                  <label class="custom-control custom-checkbox">
-                    <input type="checkbox" checked="" class="custom-control-input">
-                    <div class="custom-control-label">Mitsubishi
-                      <b class="badge badge-pill badge-light float-right">35</b>
-                    </div>
-                  </label>
-                  <label class="custom-control custom-checkbox">
-                    <input type="checkbox" checked="" class="custom-control-input">
-                    <div class="custom-control-label">Nissan
-                      <b class="badge badge-pill badge-light float-right">89</b>
-                    </div>
-                  </label>
-                  <label class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input">
-                    <div class="custom-control-label">Honda
-                      <b class="badge badge-pill badge-light float-right">30</b>
-                    </div>
-                  </label>
+
+                  @foreach ($brands as $brand)
+                    <label class="custom-control custom-checkbox">
+                      <input type="checkbox" name="brand" value="{{ $brand->slug }}"
+                        class="custom-control-input brand-checkbox"
+                        {{ $brand->slug == request('brand') ? 'checked' : '' }}>
+                      <div class="custom-control-label">{{ $brand->name }}
+                        <b class="badge badge-pill badge-light float-right">120</b>
+                      </div>
+                    </label>
+                  @endforeach
+
                 </div>
               </div>
             </article>
+
             <article class="filter-group">
               <header class="card-header">
                 <a href="#" data-toggle="collapse" data-target="#collapse_3" aria-expanded="true" class="">
@@ -99,20 +99,34 @@
                   <h6 class="title">Price range </h6>
                 </a>
               </header>
-              <div class="filter-content show collapse" id="collapse_3" style="">
+              <div class="filter-content show collapse" id="collapse_3">
                 <div class="card-body">
-                  <input type="range" class="custom-range" min="0" max="100" name="">
-                  <div class="form-row">
-                    <div class="form-group col-md-6">
-                      <label>Min</label>
-                      <input class="form-control" placeholder="$0" type="number">
+                  <form method="GET" action="">
+                    @if (request('category'))
+                      <input type="hidden" name="category" value="{{ request('category') }}">
+                    @endif
+
+                    @if (request('brand'))
+                      <input type="hidden" name="brand" value="{{ request('brand') }}">
+                    @endif
+
+                    @if (request('search'))
+                      <input type="hidden" name="search" value="{{ request('search') }}">
+                    @endif
+
+                    <input type="range" class="custom-range" min="0" max="2000">
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label>Min</label>
+                        <input class="form-control" placeholder="$0" type="number" name="min">
+                      </div>
+                      <div class="form-group col-md-6 text-right">
+                        <label>Max</label>
+                        <input class="form-control" placeholder="$2,0000" type="number" name="max">
+                      </div>
                     </div>
-                    <div class="form-group col-md-6 text-right">
-                      <label>Max</label>
-                      <input class="form-control" placeholder="$1,0000" type="number">
-                    </div>
-                  </div>
-                  <button class="btn btn-block btn-primary">Apply</button>
+                    <button class="btn btn-block btn-primary" type="submit">Apply</button>
+                  </form>
                 </div>
               </div>
             </article>
@@ -239,3 +253,40 @@
     </div>
   </section>
 </x-front.front>
+
+<script>
+  $(document).ready(function() {
+    $('input[name="brand"]').on('change', function() {
+      var brandValue = $(this).val();
+
+      if (this.checked) {
+        // Add the brand parameter to the URL
+        var url = new URL(window.location.href);
+        url.searchParams.set("brand", brandValue);
+        window.history.pushState({
+          path: url.href
+        }, '', url.href);
+        location.reload();
+      } else {
+        // Remove the brand parameter from the URL
+        var url = new URL(window.location.href);
+        url.searchParams.delete("brand");
+        window.history.pushState({
+          path: url.href
+        }, '', url.href);
+        location.reload();
+      }
+    });
+  });
+
+
+  $(document).ready(function() {
+    var minInput = $('.form-group.col-md-6:first-child input');
+    var maxInput = $('.form-group.col-md-6:last-child input');
+
+    $('.custom-range').on('input', function() {
+      // minInput.val($(this).val());
+      maxInput.val($(this).val());
+    });
+  });
+</script>
