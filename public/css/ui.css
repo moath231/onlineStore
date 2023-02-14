@@ -2047,7 +2047,7 @@ ul.row, ul.row-sm {
     mix-blend-mode: multiply;
     max-width: 100%; }
   .card-banner .overlay {
-    background-color: rgba(0, 0, 0, 0.65);
+    background-color: rgba(0, 0, 0, 0.459);
     z-index: 10;
     padding: 1.25rem;
     color: #fff; }
@@ -2098,8 +2098,11 @@ ul.row, ul.row-sm {
   display: -ms-inline-flexbox;
   display: inline-flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center; }
+  -ms-flex-align: center;
+  align-items: center; 
+  top: 12px;
+  left: 17px;
+  }
   .icontext .icon-wrap {
     position: relative; }
   .icontext .text-wrap {
@@ -2325,8 +2328,11 @@ ul.row, ul.row-sm {
 .errorMessage{
   color: red;
 }
-.form-group .logout{
+.form-group li{
   margin-left: 18px;
+}
+.form-group .logout{
+  margin-left: 7px;
   text-transform: capitalize;
   color: black;
 }
@@ -2447,14 +2453,39 @@ ul.row, ul.row-sm {
   right: -3px;
 }
 .cart-color{
-  color: #c837ab;
+  color: #000;
 }
 .loginPopupColor{
   color: #16489f;
 }
 
+.shopping-basket{
+  font-size: large;
+}
+
+.dropDown li:not(:last-child){
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+  border-bottom: 1px solid #eee;
+}
+.dropDown li a{
+  font-size:medium;
+}
+
 /* only navbar */
 
+.servecicon{
+   color: #17A2B8;
+}
+.servectitle{
+    font-weight: bold;
+    color: #343A40;
+    font-size: 18px;
+    font-family: none;
+}
+.servecp{
+  font-family: fangsong;
+}
 
 /* herder main index */
 .section-main{
@@ -2472,7 +2503,7 @@ ul.row, ul.row-sm {
 
 /* bg section image */
 .bgsectionimage{
-  background-image: url(../images/banners/bg-cpu.jpg);
+  background-image: url(../images/banners/bgsection1.jpg);
   height: 50vh;
   background-repeat: no-repeat;
   background-size: cover;

@@ -28,7 +28,7 @@ class BrandController extends Controller
         $request->validate([
             'name' => 'required',
             'description' => 'required|min:16|unique:brands,description',
-            'logo' => 'required|image|mimes:png,jpg|max:2048',
+            'logo' => 'required|image|mimes:png,jpg,svg|max:2048|dimensions:max_width=560,max_height=400',
         ]);
 
         $brands = new Brand();
@@ -73,7 +73,7 @@ class BrandController extends Controller
         $request->validate([
             'name' => 'required',
             'description' => ['required','min:16',Rule::unique('brands','description')->ignore($category)],
-            'logo' => 'image|mimes:png,jpg|max:2048',
+            'logo' => 'image|mimes:png,jpg,svg|max:2048|dimensions:max_width=560,max_height=400',
         ]);
 
         $category->name = $request->name;

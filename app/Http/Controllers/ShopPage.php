@@ -16,11 +16,13 @@ class ShopPage extends Controller
         $brands = Brand::all();
 
         $searchValue = request('search');
+        $max = request('max');
+        $min = request('min');
 
         $Product = Product::where('is_delete', '0')
-            ->filter(request(['search', 'category', 'brand']))
+            ->filter(request(['search', 'category', 'brand','min','max']))
             ->paginate(9);
 
-        return view('front.shop', compact('title', 'Product', 'category', 'searchValue', 'brands'));
+        return view('front.shop', compact('title', 'Product', 'category', 'searchValue', 'brands','max','min'));
     }
 }

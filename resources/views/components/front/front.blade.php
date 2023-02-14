@@ -10,6 +10,10 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
 
+    {{-- fontawsome --}}
+    <link rel="stylesheet" href="{{ asset('css/all.min.css') }}" type="text/css">
+    <script src="{{ asset('js/all.min.js') }}" type="text/javascript"></script>
+
     <!-- jQuery -->
     <script src="{{ asset("js/jquery-2.0.0.min.js") }}" type="text/javascript"></script>
 

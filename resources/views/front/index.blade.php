@@ -1,56 +1,65 @@
 <x-front.front title="{{ $title }}">
 
-  <section class="section-main pb-5">
+  <section class="section-main">
     <div class="containe">
       <div class="row">
         <div class="col-md-12">
           <div class="owl-init slider-main owl-carousel" data-items="1" data-dots="false" data-nav="true">
-            <div class="item-slide">
-              <img src="images/banners/slide1.jpg">
-            </div>
-            <div class="item-slide rounded">
-              <img src="images/banners/slide2.jpg">
-            </div>
-            <div class="item-slide rounded">
-              <img src="images/banners/slide3.jpg">
-            </div>
+            @if (!empty($slider))
+              <div class="item-slide">
+                <img src="{{ $slider->image1 }}">
+              </div>
+              <div class="item-slide rounded">
+                <img src="{{ $slider->image2 }}">
+              </div>
+              <div class="item-slide rounded">
+                <img src="{{ $slider->image3 }}">
+              </div>
+            @endif
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section-content padding-y-sm pt-5 pb-5">
+  <section class="section-content padding-y-sm pt-5 pb-5" style="background-color: #F8F9FA;">
     <div class="container">
       <article class="card-body">
         <div class="row">
           <div class="col-md-4 text-center">
             <figure>
-              <span class="loginPopupColor"><i class="fa fa-2x fa-truck"></i> </span>
+              <span class="servecicon">
+                <i class="fa fa-2x fa-truck"></i>
+              </span>
               <figcaption class="pt-3">
-                <h5 class="title">Fast delivery</h5>
-                <p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                  tempor incididunt ut labore </p>
+                <h5 class="servectitle">Fast delivery</h5>
+                <p class="servecp">The first benefit is represented by a truck icon and the text "Fast delivery". The
+                  accompanying text
+                  explains that the product/service is delivered quickly and efficiently.</p>
               </figcaption>
             </figure>
           </div>
           <div class="col-md-4 text-center">
             <figure>
-              <span class="loginPopupColor"><i class="fas fa-2x fa-plug"></i></span>
+              <span class="servecicon"><i class="fas fa-2x fa-plug"></i></span>
               <figcaption class="pt-3">
-                <h5 class="title">Creative Strategy</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                </p>
+                <h5 class="servectitle">Creative Strategy</h5>
+                <p class="servecp">The second benefit is represented by a plug icon and the text "Creative Strategy".
+                  The accompanying
+                  text explains that the product/service has a creative and effective strategy for solving problems or
+                  achieving goals.</p>
               </figcaption>
             </figure>
           </div>
           <div class="col-md-4 text-center">
             <figure>
-              <span class="loginPopupColor"><i class="fa fa-2x fa-lock"></i></span>
+              <span class="servecicon"><i class="fa fa-2x fa-lock"></i></span>
               <figcaption class="pt-3">
-                <h5 class="title">High secured </h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                </p>
+                <h5 class="servectitle">High secured</h5>
+                <p class="servecp">The third benefit is represented by a lock icon and the text "High secured". The
+                  accompanying text
+                  explains that the product/service has a high level of security and can be trusted to protect sensitive
+                  information or assets.</p>
               </figcaption>
             </figure>
           </div>
@@ -65,46 +74,21 @@
         <h3 class="section-title">category</h3>
       </header>
       <div class="row slider">
-        <div class="col-md-4">
-          <div class="card-banner" style="height:250px; background-image: url('images/posts/1.jpg');">
-            <article class="overlay overlay-cover d-flex align-items-center justify-content-center">
-              <div class="text-center">
-                <h5 class="card-title">Primary text as title 1</h5>
-                <a href="#" class="btn categorybtn btn-sm"> View All </a>
+        @if (count($categorys) > 0)
+          @foreach ($categorys as $category)
+            <div class="col-md-4">
+              <div class="card-banner" style="height:250px; background-image: url('{{ $category->logo }}');">
+                <article class="overlay overlay-cover d-flex align-items-center justify-content-center">
+                  <div class="text-center">
+                    <h5 class="card-title">{{ $category->name }}</h5>
+                    <a href="{{ asset('/shop?category=' . $category->slug) }}" class="btn categorybtn btn-sm"> show All
+                    </a>
+                  </div>
+                </article>
               </div>
-            </article>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card-banner" style="height:250px; background-image: url('images/posts/1.jpg');">
-            <article class="overlay overlay-cover d-flex align-items-center justify-content-center">
-              <div class="text-center">
-                <h5 class="card-title">Primary text as title 2</h5>
-                <a href="#" class="btn categorybtn btn-sm"> View All </a>
-              </div>
-            </article>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card-banner" style="height:250px; background-image: url('images/posts/2.jpg');">
-            <article class="overlay overlay-cover d-flex align-items-center justify-content-center">
-              <div class="text-center">
-                <h5 class="card-title">Primary text as title 3</h5>
-                <a href="#" class="btn categorybtn btn-sm"> View All </a>
-              </div>
-            </article>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card-banner" style="height:250px; background-image: url('images/posts/3.jpg');">
-            <article class="overlay overlay-cover d-flex align-items-center justify-content-center">
-              <div class="text-center">
-                <h5 class="card-title">Primary text as title 4</h5>
-                <a href="#" class="btn categorybtn btn-sm"> View All </a>
-              </div>
-            </article>
-          </div>
-        </div>
+            </div>
+          @endforeach
+        @endif
       </div>
     </div>
   </section>
@@ -501,7 +485,7 @@
           @foreach ($brands as $brand)
             <div class="col-md-12">
               <figure class="boxBrand item-logo">
-                <a href="#"><img src="{{ asset($brand->logo) }}" width="130" style="margin: 10px auto"></a>
+                <a href="{{ asset('/shop?brand='.$brand->slug) }}"><img src="{{ asset($brand->logo) }}" width="130" style="margin: 10px auto"></a>
                 <figcaption class="border-top pt-2 text-center">36 Products</figcaption>
               </figure>
             </div>

@@ -13,6 +13,12 @@
         <span class="app-menu__label">Dashboard</span>
       </a>
     </li>
+    <li>
+      <a class="app-menu__item {{  Request::is('admin/homeAdmin') ? 'active' : '' }}" href="{{ route('homeAdmin') }}">
+        <i class="app-menu__icon fa fa-home"></i>
+        <span class="app-menu__label">home</span>
+      </a>
+    </li>
     <li class="treeview">
       <a class="app-menu__item {{  Request::is('admin/product') || Request::is('admin/product/create') ? 'active' : '' }}" href="#" data-toggle="treeview">
         <i class="app-menu__icon fa fa-product-hunt" aria-hidden="true"></i>

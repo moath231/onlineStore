@@ -4,6 +4,7 @@ use App\Http\Controllers\adminController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Home;
+use App\Http\Controllers\homeAdmin;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShopPage;
 use App\Http\Controllers\usersController;
@@ -32,6 +33,10 @@ Route::post('/login',[usersController::class,'login']);
 
 
 Route::resource('admin',adminController::class)->only('index');
+
+Route::get('admin/homeAdmin',[homeAdmin::class,'index'])->name('homeAdmin');
+Route::post('admin/homeAdmin',[homeAdmin::class,'storeimage'])->name('storeimage');
+Route::post('admin/homeAdmin/{id}',[homeAdmin::class,'updateimage'])->name('updateimage');
 
 Route::resource('admin/product',ProductController::class);
 Route::post('admin/product/approve/{id}', [ProductController::class, 'approve']);

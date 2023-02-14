@@ -1,17 +1,10 @@
 <x-front.front title="{{ $title }}">
 
-  <section class="section-pagetop bg">
-    <div class="container">
-      <h2 class="title-page">shop</h2>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item"><a href="#">shop</a></li>
-          <li class="breadcrumb-item active" aria-current="page">all product</li>
-        </ol>
-      </nav>
-    </div>
-  </section>
+  <x-front.shopNavbar :category="$category"/>
+
+  <x-section.breadcrumb title="shop">
+    <li class="breadcrumb-item"><a href="{{ route('shop') }}">shop</a></li>
+  </x-section.breadcrumb>
 
   <section class="section-content padding-y">
     <div class="container">
@@ -118,11 +111,11 @@
                     <div class="form-row">
                       <div class="form-group col-md-6">
                         <label>Min</label>
-                        <input class="form-control" placeholder="$0" type="number" name="min">
+                        <input class="form-control" placeholder="$0" type="number" name="min" value="{{ $min ?? '' }}">
                       </div>
                       <div class="form-group col-md-6 text-right">
                         <label>Max</label>
-                        <input class="form-control" placeholder="$2,0000" type="number" name="max">
+                        <input class="form-control" placeholder="$2,0000" type="number" name="max" value="{{ $max ?? '' }}">
                       </div>
                     </div>
                     <button class="btn btn-block btn-primary" type="submit">Apply</button>
@@ -201,7 +194,7 @@
 
           <header class="border-bottom mb-4 pb-3">
             <div class="form-inline">
-              <span class="mr-md-auto">32 Items found </span>
+              <span class="mr-md-auto">{{ count($Product) }} Items found </span>
               <select class="form-control mr-2">
                 <option>Latest items</option>
                 <option>Trending</option>
@@ -209,8 +202,8 @@
                 <option>Cheapest</option>
               </select>
               <div class="btn-group">
-                <a href="#" class="btn btn-outline-secondary" data-toggle="tooltip" title="List view">
-                  <i class="fa fa-bars"></i></a>
+                {{-- <a href="#" class="btn btn-outline-secondary" data-toggle="tooltip" title="List view">
+                  <i class="fa fa-bars"></i></a> --}}
                 <a href="#" class="btn btn-outline-secondary active" data-toggle="tooltip" title="Grid view">
                   <i class="fa fa-th"></i></a>
               </div>

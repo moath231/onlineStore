@@ -1,16 +1,8 @@
 <x-front.front title="{{ $title }}">
-
-  <section class="section-pagetop bg">
-    <div class="container">
-      <h2 class="title-page">reguster</h2>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active" aria-current="page">reguster</li>
-        </ol>
-      </nav>
-    </div>
-  </section>
+  
+  <x-section.breadcrumb title="reguster">
+    <li class="breadcrumb-item"><a href="{{ route('regster') }}">reguster</a></li>
+  </x-section.breadcrumb>
 
   <section class="section-content padding-y">
     <div class="container">

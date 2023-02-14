@@ -29,6 +29,16 @@ class Product extends Model
             fn($query, $brand) => 
                 $query->whereHas('brand',fn($query) =>
                     $query->where('slug',$brand)));
+
+        $query->when($filters['min'] ?? false,
+            fn($query, $min) => 
+                $query
+                ->where('price', '>', $min ));
+
+        $query->when($filters['max'] ?? false,
+            fn($query, $max) => 
+                $query
+                ->where('price', '<', $max ));
     }
 
     public function category()
