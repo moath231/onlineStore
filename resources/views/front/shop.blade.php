@@ -1,6 +1,6 @@
 <x-front.front title="{{ $title }}">
 
-  <x-front.shopNavbar :category="$category"/>
+  <x-front.shopNavbar :category="$category" />
 
   <x-section.breadcrumb title="shop">
     <li class="breadcrumb-item"><a href="{{ route('shop') }}">shop</a></li>
@@ -111,11 +111,13 @@
                     <div class="form-row">
                       <div class="form-group col-md-6">
                         <label>Min</label>
-                        <input class="form-control" placeholder="$0" type="number" name="min" value="{{ $min ?? '' }}">
+                        <input class="form-control" placeholder="$0" type="number" name="min"
+                          value="{{ $min ?? '' }}">
                       </div>
                       <div class="form-group col-md-6 text-right">
                         <label>Max</label>
-                        <input class="form-control" placeholder="$2,0000" type="number" name="max" value="{{ $max ?? '' }}">
+                        <input class="form-control" placeholder="$2,0000" type="number" name="max"
+                          value="{{ $max ?? '' }}">
                       </div>
                     </div>
                     <button class="btn btn-block btn-primary" type="submit">Apply</button>
@@ -210,6 +212,25 @@
             </div>
           </header>
 
+          <div class="modal fade " id="quickview-modal">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content modelContectCusto">
+                <div class="modal-header">
+                  <h5 class="modal-title">Product details</h5>
+                  <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <!-- Product details will be displayed here -->
+                </div>
+                {{-- <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div> --}}
+              </div>
+            </div>
+          </div>
+
           <div class="row">
             @if (count($Product) > 0)
               @foreach ($Product as $pro)
@@ -220,7 +241,11 @@
                         <span class="badge badge-danger"> NEW </span>
                       @endif
                       <img src="{{ asset($pro->mainImage) }}">
-                      <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i> Quick view</a>
+                      <a class="btn-overlay" href="shop/{{ $pro->id }}/quickview"
+                        data-target="#quickview-modal">
+                        <i class="fa fa-search-plus"></i>
+                        Quick view
+                      </a>
                     </div>
                     <figcaption class="info-wrap">
                       <div class="fix-height">
@@ -240,9 +265,7 @@
 
           {{ $Product->links('vendor.pagination.bootstrap-5') }}
         </main>
-
       </div>
-
     </div>
   </section>
 </x-front.front>
@@ -280,6 +303,18 @@
     $('.custom-range').on('input', function() {
       // minInput.val($(this).val());
       maxInput.val($(this).val());
+    });
+  });
+
+
+  $(function() {
+    $('.btn-overlay').click(function(event) {
+      event.preventDefault();
+      var url = $(this).attr('href');
+      $.get(url, function(data) {
+        $('#quickview-modal .modal-body').html(data);
+        $('#quickview-modal').modal('show');
+      });
     });
   });
 </script>

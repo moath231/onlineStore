@@ -25,4 +25,9 @@ class ShopPage extends Controller
 
         return view('front.shop', compact('title', 'Product', 'category', 'searchValue', 'brands','max','min'));
     }
+
+    public function quickview($id){
+        $productview = Product::findOrFail($id);
+        return view('front.quickview', compact('productview'));
+    }
 }

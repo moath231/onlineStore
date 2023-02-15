@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [Home::class,'index'])->name('home');
 
 Route::get('shop', [ShopPage::class,'index'])->name('shop');
-
+Route::get('/shop/{id}/quickview', [ShopPage::class,'quickview']);
 
 Route::get('/register',[usersController::class,'index'])->name('regster');
 Route::post('/register',[usersController::class,'store']);

@@ -1630,6 +1630,12 @@ article:after,
     }
 
     /*  */
+/* .modelContectCustom{
+  width: max-content;
+  left: -355px;
+} */
+  
+
     /*  */
     .checkbox-btn {
       position: relative; }
@@ -1690,7 +1696,7 @@ article:after,
     text-align: center;
     display: block; }
   .gallery-wrap .img-big-wrap img {
-    height: 450px;
+    height: 270px;
     width: auto;
     display: inline-block;
     cursor: -webkit-zoom-in;
