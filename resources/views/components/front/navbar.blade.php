@@ -13,8 +13,7 @@
 
       <div class="col-lg-3 col-sm-6">
         <div class="widgets-wrap d-flex justify-content-end">
-
-          <div class="widget-header">
+          {{-- <div class="widget-header">
             <a href="#" class="icontext position-relative">
               <div class="icon-wrap icon-xs cart-color">
                 <i class="fas fa-shopping-basket shopping-basket"></i>
@@ -23,34 +22,35 @@
                 <span>3</span>
               </div>
             </a>
-          </div>
+          </div> --}}
 
           <div class="widget-header dropdown">
-            <a href="#" class="icontext ml-3" data-toggle="dropdown" data-offset="20,10">
-              <div class="icon-wrap bg2 round">
+            <a href="#" class="icontext ml-3" data-toggle="dropdown" data-offset="100,15">
+              <div class="icon-wrap round">
                 <img src="{{ asset('images/avatars/avatar1.jpg') }}" alt="" width="50" class="round">
               </div>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
               @auth
-              <div class="px-1 pt-3">
-                <div class="form-group dropDown">
-                  <li>
-                    <i class="fa fa-shopping-basket"></i>
-                    <a class="logout" href="{{ route('shop') }}">shop</a>
-                  </li>
-                  <li>
-                    <i class="fa fa-sign-out"></i>
-                    <a class="logout" href="/logout">logout</a>
-                  </li>
+                <div class="px-1 pt-3">
+                  <div class="form-group dropDown">
+                    <li>
+                      <i class="fa fa-shopping-basket"></i>
+                      <a class="logout" href="{{ route('shop') }}">shop</a>
+                    </li>
+                    <li>
+                      <i class="fa fa-sign-out"></i>
+                      <a class="logout" href="/logout">logout</a>
+                    </li>
+                  </div>
                 </div>
-              </div>
               @else
                 <form class="px-4 py-3" method="post" action="/login">
                   @csrf
                   <div class="form-group">
                     <label>Email address</label>
-                    <input name="email" type="email" class="form-control" placeholder="email@example.com" autocomplete="off">
+                    <input name="email" type="email" class="form-control" placeholder="email@example.com"
+                      autocomplete="off">
                     @error('email')
                       <div class="errorMessage mt-2">{{ $message }}</div>
                     @enderror
@@ -67,6 +67,25 @@
               @endauth
             </div>
           </div>
+
+          <div class="dropdown">
+            <a href="#" class="icontext ml-3" data-toggle="dropdown" data-offset="70,29">
+              <div class="icon-wrap burgericon">
+                <i class="fa-light fa-list-ul"></i>
+              </div>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+                <div class="px-1 pt-3">
+                  <div class="form-group dropDown">
+                    <li>
+                      <i class="fa fa-shopping-basket"></i>
+                      <a class="logout" href="{{ route('shop') }}">shop</a>
+                    </li>
+                  </div>
+                </div>
+            </div>
+          </div>
+
         </div>
       </div>
 

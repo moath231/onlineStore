@@ -1,6 +1,6 @@
 <x-front.front title="{{ $title }}">
 
-  <x-front.shopNavbar :category="$category" />
+  {{-- <x-front.shopNavbar :category="$category" /> --}}
 
   <x-section.breadcrumb title="shop">
     <li class="breadcrumb-item"><a href="{{ route('shop') }}">shop</a></li>

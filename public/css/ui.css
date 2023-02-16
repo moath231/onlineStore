@@ -180,6 +180,18 @@ a:hover {
 .form-inline .form-control-sm[type="number"] {
   max-width: 100px; }
 
+
+
+/* ========== burger icon ========== */
+.burgericon{
+  font-weight: 800;
+  font-size: 24px;
+  color: black;
+  top: 50%;
+  left: 50%;
+  transform: translate(-20px, 7px);}
+/* ========== burger icon ========== */
+
 /* ========== borders ========== */
 .border {
   border: 1px solid #dee2e6; }

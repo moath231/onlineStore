@@ -60,7 +60,7 @@
 <body>
   <div class="wrapper bg-dark-white" id="products">
 
-    <header id="sticky-menu" class="header header-2">
+    <header id="sticky-menu" class="header header-2 border-bottom">
       <x-front.navbar/>
     </header>
     <main class="main">
