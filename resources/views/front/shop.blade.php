@@ -1,14 +1,9 @@
 <x-front.front title="{{ $title }}">
-
-  {{-- <x-front.shopNavbar :category="$category" /> --}}
-
   <x-section.breadcrumb title="shop">
     <li class="breadcrumb-item"><a href="{{ route('shop') }}">shop</a></li>
   </x-section.breadcrumb>
-
   <section class="section-content padding-y">
     <div class="container">
-
       <div class="row">
         <aside class="col-md-3">
           <div class="card">
@@ -25,19 +20,15 @@
                     @if (request('category'))
                       <input type="hidden" name="category" value="{{ request('category') }}">
                     @endif
-
                     @if (request('brand'))
                       <input type="hidden" name="brand" value="{{ request('brand') }}">
                     @endif
-
                     @if (request('min'))
                       <input type="hidden" name="min" value="{{ request('min') }}">
                     @endif
-
                     @if (request('max'))
                       <input type="hidden" name="max" value="{{ request('max') }}">
                     @endif
-
                     <div class="input-group">
                       <input type="text" class="form-control" name="search" value="{{ $searchValue ?? '' }}"
                         placeholder="Search">
@@ -46,7 +37,6 @@
                       </div>
                     </div>
                   </form>
-
                   <ul class="list-menu">
                     @foreach ($category as $cate)
                       <li>
@@ -56,7 +46,6 @@
                       </li>
                     @endforeach
                   </ul>
-
                 </div>
               </div>
             </article>
@@ -69,7 +58,6 @@
               </header>
               <div class="filter-content show collapse" id="collapse_2" style="">
                 <div class="card-body">
-
                   @foreach ($brands as $brand)
                     <label class="custom-control custom-checkbox">
                       <input type="checkbox" name="brand" value="{{ $brand->slug }}"
@@ -80,11 +68,9 @@
                       </div>
                     </label>
                   @endforeach
-
                 </div>
               </div>
             </article>
-
             <article class="filter-group">
               <header class="card-header">
                 <a href="#" data-toggle="collapse" data-target="#collapse_3" aria-expanded="true" class="">
@@ -98,15 +84,12 @@
                     @if (request('category'))
                       <input type="hidden" name="category" value="{{ request('category') }}">
                     @endif
-
                     @if (request('brand'))
                       <input type="hidden" name="brand" value="{{ request('brand') }}">
                     @endif
-
                     @if (request('search'))
                       <input type="hidden" name="search" value="{{ request('search') }}">
                     @endif
-
                     <input type="range" class="custom-range" min="0" max="2000">
                     <div class="form-row">
                       <div class="form-group col-md-6">
@@ -139,17 +122,14 @@
                     <input type="checkbox">
                     <span class="btn btn-light"> XS </span>
                   </label>
-
                   <label class="checkbox-btn">
                     <input type="checkbox">
                     <span class="btn btn-light"> SM </span>
                   </label>
-
                   <label class="checkbox-btn">
                     <input type="checkbox">
                     <span class="btn btn-light"> LG </span>
                   </label>
-
                   <label class="checkbox-btn">
                     <input type="checkbox">
                     <span class="btn btn-light"> XXL </span>
@@ -171,17 +151,14 @@
                     <input type="radio" name="myfilter_radio" checked="" class="custom-control-input">
                     <div class="custom-control-label">Any condition</div>
                   </label>
-
                   <label class="custom-control custom-radio">
                     <input type="radio" name="myfilter_radio" class="custom-control-input">
                     <div class="custom-control-label">Brand new </div>
                   </label>
-
                   <label class="custom-control custom-radio">
                     <input type="radio" name="myfilter_radio" class="custom-control-input">
                     <div class="custom-control-label">Used items</div>
                   </label>
-
                   <label class="custom-control custom-radio">
                     <input type="radio" name="myfilter_radio" class="custom-control-input">
                     <div class="custom-control-label">Very old</div>
@@ -191,9 +168,7 @@
             </article>
           </div>
         </aside>
-
         <main class="col-md-9">
-
           <header class="border-bottom mb-4 pb-3">
             <div class="form-inline">
               <span class="mr-md-auto">{{ count($Product) }} Items found </span>
@@ -211,8 +186,7 @@
               </div>
             </div>
           </header>
-
-          <div class="modal fade " id="quickview-modal">
+          <div class="modal fade" id="quickview-modal">
             <div class="modal-dialog modal-lg">
               <div class="modal-content modelContectCusto">
                 <div class="modal-header">
@@ -268,53 +242,56 @@
       </div>
     </div>
   </section>
+
+  @push('shopPage')
+    <script>
+      $(document).ready(function() {
+        $('input[name="brand"]').on('change', function() {
+          var brandValue = $(this).val();
+
+          if (this.checked) {
+            // Add the brand parameter to the URL
+            var url = new URL(window.location.href);
+            url.searchParams.set("brand", brandValue);
+            window.history.pushState({
+              path: url.href
+            }, '', url.href);
+            location.reload();
+          } else {
+            // Remove the brand parameter from the URL
+            var url = new URL(window.location.href);
+            url.searchParams.delete("brand");
+            window.history.pushState({
+              path: url.href
+            }, '', url.href);
+            location.reload();
+          }
+        });
+      });
+
+
+      $(document).ready(function() {
+        var minInput = $('.form-group.col-md-6:first-child input');
+        var maxInput = $('.form-group.col-md-6:last-child input');
+
+        $('.custom-range').on('input', function() {
+          // minInput.val($(this).val());
+          maxInput.val($(this).val());
+        });
+      });
+
+
+      $(function() {
+        $('.btn-overlay').click(function(event) {
+          event.preventDefault();
+          var url = $(this).attr('href');
+          $.get(url, function(data) {
+            $('#quickview-modal .modal-body').html(data);
+            $('#quickview-modal').modal('show');
+          });
+        });
+      });
+    </script>
+  @endpush
 </x-front.front>
 
-<script>
-  $(document).ready(function() {
-    $('input[name="brand"]').on('change', function() {
-      var brandValue = $(this).val();
-
-      if (this.checked) {
-        // Add the brand parameter to the URL
-        var url = new URL(window.location.href);
-        url.searchParams.set("brand", brandValue);
-        window.history.pushState({
-          path: url.href
-        }, '', url.href);
-        location.reload();
-      } else {
-        // Remove the brand parameter from the URL
-        var url = new URL(window.location.href);
-        url.searchParams.delete("brand");
-        window.history.pushState({
-          path: url.href
-        }, '', url.href);
-        location.reload();
-      }
-    });
-  });
-
-
-  $(document).ready(function() {
-    var minInput = $('.form-group.col-md-6:first-child input');
-    var maxInput = $('.form-group.col-md-6:last-child input');
-
-    $('.custom-range').on('input', function() {
-      // minInput.val($(this).val());
-      maxInput.val($(this).val());
-    });
-  });
-
-
-  $(function() {
-    $('.btn-overlay').click(function(event) {
-      event.preventDefault();
-      var url = $(this).attr('href');
-      $.get(url, function(data) {
-        $('#quickview-modal .modal-body').html(data);
-        $('#quickview-modal').modal('show');
-      });
-    });
-  });
-</script>
