@@ -214,7 +214,9 @@
                       @if ($pro->created_at->diffIndays() <= 3)
                         <span class="badge badge-danger"> NEW </span>
                       @endif
-                      <img src="{{ asset($pro->mainImage) }}">
+                      <a id="single_image" href="{{ asset($pro->mainImage) }}">
+                        <img src="{{ asset($pro->mainImage) }}">
+                      </a>
                       <a class="btn-overlay" href="shop/{{ $pro->id }}/quickview"
                         data-target="#quickview-modal">
                         <i class="fa fa-search-plus"></i>
@@ -294,4 +296,3 @@
     </script>
   @endpush
 </x-front.front>
-

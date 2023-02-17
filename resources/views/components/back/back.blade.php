@@ -14,14 +14,17 @@
   <!-- Main CSS-->
   <link rel="stylesheet" type="text/css" href="{{ asset('backend/css/main.css') }}" />
   <!-- Font-icon css-->
-  <link rel="stylesheet" type="text/css" href="{{ asset('backend/css/font-awesome/4.7.0/css/font-awesome.min.css') }}" />
+  <link rel="stylesheet" type="text/css"
+    href="{{ asset('backend/css/font-awesome/4.7.0/css/font-awesome.min.css') }}" />
 </head>
 
 <body class="app sidebar-mini rtl">
+
   <head>
-    <x-back.navBar/>
-    <x-back.aside/>
+    <x-back.navBar />
+    <x-back.aside />
   </head>
+
 
   <main class="app-content">
     {{ $slot }}
@@ -35,7 +38,9 @@
   <script src="{{ asset('backend/js/plugins/pace.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('backend/js/plugins/jquery.dataTables.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('backend/js/plugins/dataTables.bootstrap.min.js') }}"></script>
-  <script type="text/javascript">$('#sampleTable').DataTable();</script>
+  <script type="text/javascript">
+    $('#sampleTable').DataTable();
+  </script>
 
 </body>
 
