@@ -4,7 +4,7 @@
     <div class="containe">
       <div class="row">
         <div class="col-md-12">
-          <div class="owl-init slider-main owl-carousel" data-items="1" data-dots="false" data-nav="true">
+          <div class="slidermain slider-main">
             @if (!empty($slider))
               <div class="item-slide">
                 <img src="{{ $slider->image1 }}">
@@ -73,7 +73,7 @@
       <header class="section-heading">
         <h3 class="section-title">category</h3>
       </header>
-      <div class="row slider">
+      <div class="row categoryslider">
         @if (count($categorys) > 0)
           @foreach ($categorys as $category)
             <div class="col-md-4">
