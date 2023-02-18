@@ -28,7 +28,7 @@
                   <tr>
                     <td>{{ $b->name }}</td>
                     <td>{{ $b->description }}</td>
-                    <td><img src="{{ asset($b->logo) }}" alt="" width="55"></td>
+                    <td><img src="{{ asset($b->photos->where('type', 'logo')->first()->src) }}" alt="" width="55"></td>
 
                     <td>
                       <form action="/admin/brand/{{ $b->id }}" method="Post">

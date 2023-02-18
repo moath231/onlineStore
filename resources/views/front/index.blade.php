@@ -77,7 +77,7 @@
         @if (count($categorys) > 0)
           @foreach ($categorys as $category)
             <div class="col-md-4">
-              <div class="card-banner" style="height:250px; background-image: url('{{ $category->logo }}');">
+              <div class="card-banner" style="height:250px; background-image: url('{{ $category->photos->where('type', 'logo')->first()->src }}');">
                 <article class="overlay overlay-cover d-flex align-items-center justify-content-center">
                   <div class="text-center">
                     <h5 class="card-title">{{ $category->name }}</h5>
@@ -485,7 +485,7 @@
           @foreach ($brands as $brand)
             <div class="col-md-12">
               <figure class="boxBrand item-logo">
-                <a href="{{ asset('/shop?brand='.$brand->slug) }}"><img src="{{ asset($brand->logo) }}" width="130" style="margin: 10px auto"></a>
+                <a href="{{ asset('/shop?brand='.$brand->slug) }}"><img src="{{ asset($brand->photos->where('type', 'logo')->first()->src) }}" width="130" style="margin: 10px auto"></a>
                 <figcaption class="border-top pt-2 text-center">36 Products</figcaption>
               </figure>
             </div>

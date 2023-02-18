@@ -15,4 +15,9 @@ class Category extends Model
     {
         return $this->hasMany(Category::class);
     }
+
+    public function photos()
+    {
+        return $this->morphMany(photos::class, 'photoable');
+    }
 }

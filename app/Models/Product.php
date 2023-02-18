@@ -12,33 +12,19 @@ class Product extends Model
 
     protected $guarded = [];
 
+    public static $rules = [];
+
     public function scopeFilter($query, array $filters)
     {
-        $query->when($filters['search'] ?? false, 
-            fn($query, $search) => 
-                $query
-                    ->where('shortDescription', 'like', '%' . $search . '%')
-                    ->orWhere('longDescription', 'like', '%' . $search . '%'));
+        $query->when($filters['search'] ?? false, fn($query, $search) => $query->where('shortDescription', 'like', '%' . $search . '%')->orWhere('longDescription', 'like', '%' . $search . '%'));
 
-        $query->when($filters['category'] ?? false,
-            fn($query, $category) => 
-                $query->whereHas('category',fn($query) =>
-                    $query->where('slug',$category)));
-        
-        $query->when($filters['brand'] ?? false,
-            fn($query, $brand) => 
-                $query->whereHas('brand',fn($query) =>
-                    $query->where('slug',$brand)));
+        $query->when($filters['category'] ?? false, fn($query, $category) => $query->whereHas('category', fn($query) => $query->where('slug', $category)));
 
-        $query->when($filters['min'] ?? false,
-            fn($query, $min) => 
-                $query
-                ->where('price', '>', $min ));
+        $query->when($filters['brand'] ?? false, fn($query, $brand) => $query->whereHas('brand', fn($query) => $query->where('slug', $brand)));
 
-        $query->when($filters['max'] ?? false,
-            fn($query, $max) => 
-                $query
-                ->where('price', '<', $max ));
+        $query->when($filters['min'] ?? false, fn($query, $min) => $query->where('price', '>', $min));
+
+        $query->when($filters['max'] ?? false, fn($query, $max) => $query->where('price', '<', $max));
     }
 
     public function category()
@@ -54,5 +40,10 @@ class Product extends Model
     public function orderDetail()
     {
         return $this->hasMany(OrderDetails::class);
+    }
+
+    public function photos()
+    {
+        return $this->morphMany(photos::class, 'photoable');
     }
 }

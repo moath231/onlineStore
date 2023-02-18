@@ -2,12 +2,11 @@
 
   <x-back.headerpage tablename="producr table" tablediscrption="Table to display all product" />
 
-  @if(session('success'))
+  @if (session('success'))
     <div class="alert alert-success">
-        <x-Indicators.alertS success="{{ session('success') }}"/>
+      <x-Indicators.alertS success="{{ session('success') }}" />
     </div>
   @endif
-
 
   <div class="row">
     <div class="col-md-12">
@@ -46,10 +45,30 @@
                     <td>{{ $p->model }}</td>
                     <td style="color: {{ $p->color }}">{{ $p->color }}</td>
                     <td>{{ $p->size }}</td>
-                    <td><img src="{{ asset($p->mainImage) }}" alt="" width="55"></td>
-                    <td><img src="{{ asset($p->image1) }}" alt="" width="55"></td>
-                    <td><img src="{{ asset($p->image2) }}" alt="" width="55"></td>
-                    <td><img src="{{ asset($p->image3) }}" alt="" width="55"></td>
+                    <td>
+                      @if ($p->photos->where('type', 'image1')->count() > 0)
+                        <img src="{{ asset($p->photos->where('type', 'image1')->first()->src) }}" alt=""
+                          width="55">
+                      @endif
+                    </td>
+                    <td>
+                      @if ($p->photos->where('type', 'image2')->count() > 0)
+                        <img src="{{ asset($p->photos->where('type', 'image2')->first()->src) }}" alt=""
+                          width="55">
+                      @endif
+                    </td>
+                    <td>
+                      @if ($p->photos->where('type', 'image3')->count() > 0)
+                        <img src="{{ asset($p->photos->where('type', 'image3')->first()->src) }}" alt=""
+                          width="55">
+                      @endif
+                    </td>
+                    <td>
+                      @if ($p->photos->where('type', 'image4')->count() > 0)
+                        <img src="{{ asset($p->photos->where('type', 'image4')->first()->src) }}" alt=""
+                          width="55">
+                      @endif
+                    </td>
                     <td>{{ $p->category->name }}</td>
                     <td>{{ $p->brand->name }}</td>
 
@@ -62,22 +81,23 @@
                     </td>
                     <td>
                       @if ($p->is_delete == 0)
-                      <form action="product/{{ $p->id }}" method="Post">
-                        @csrf
-                        @method('DELETE')
-                        <input class="btn btn-danger text-white" type="submit" value="Delete">
-                      </form>
-                      <form action="/admin/product/hide/{{ $p->id }}" method="Post">
-                        @csrf
-                        <input class="btn btn-warning text-white" type="submit" value="hide">
-                      </form>
+                        <form action="product/{{ $p->id }}" method="Post">
+                          @csrf
+                          @method('DELETE')
+                          <input class="btn btn-danger text-white" type="submit" value="Delete">
+                        </form>
+                        <form action="/admin/product/hide/{{ $p->id }}" method="Post">
+                          @csrf
+                          <input class="btn btn-warning text-white" type="submit" value="hide">
+                        </form>
                       @else
-                      <form action="/admin/product/approve/{{ $p->id }}" method="Post">
-                        @csrf
-                        <input class="btn btn-success text-white" type="submit" value="Approve">
-                      </form>
+                        <form action="/admin/product/approve/{{ $p->id }}" method="Post">
+                          @csrf
+                          <input class="btn btn-success text-white" type="submit" value="Approve">
+                        </form>
                       @endif
-                      <a class="btn btn-info text-white" type="button" href="/admin/product/{{ $p->id }}/edit">Edit</a>
+                      <a class="btn btn-info text-white" type="button"
+                        href="/admin/product/{{ $p->id }}/edit">Edit</a>
                     </td>
                   </tr>
                 @endforeach

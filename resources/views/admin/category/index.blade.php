@@ -28,7 +28,7 @@
                   <tr>
                     <td>{{ $c->name }}</td>
                     <td>{{ $c->description }}</td>
-                    <td><img src="{{ asset($c->logo) }}" alt="" width="55"></td>
+                    <td><img src="{{ asset($c->photos->where('type', 'logo')->first()->src) }}" alt="" width="55"></td>
 
                     <td>
                       <form action="/admin/category/{{ $c->id }}" method="Post">

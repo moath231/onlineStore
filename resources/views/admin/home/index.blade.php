@@ -14,12 +14,20 @@
       <div class="tile">
         <h3 class="tile-title">Slider</h3>
         <div class="ml-5 mb-5 pl-5">
-          <img src="/{{ $slider->image1 }}" alt="image one" width="150">
-          <img src="/{{ $slider->image2 }}" alt="image tow" width="150">
-          <img src="/{{ $slider->image3 }}" alt="image three" width="150">
+          @if (!empty($slider->image1))
+            <img src="/{{ $slider->image1 }}" alt="image one" width="150">
+          @endif
+          @if (!empty($slider->image1))
+            <img src="/{{ $slider->image2 }}" alt="image tow" width="150">
+          @endif
+          @if (!empty($slider->image1))
+            <img src="/{{ $slider->image3 }}" alt="image three" width="150">
+          @endif
         </div>
         <div class="tile-body">
-          <form class="form-horizontal" method="POST" action="/admin/homeAdmin/{{ $slider->id }}" enctype="multipart/form-data">
+          @if (!empty($slider->image1))
+          <form class="form-horizontal" method="POST" action="/admin/homeAdmin/{{ $slider->id }}"
+            enctype="multipart/form-data">
             @csrf
             <div class="form-group row">
               <label class="control-label col-md-3">Image one</label>
@@ -51,6 +59,7 @@
               </div>
             </div>
           </form>
+          @endif
         </div>
       </div>
     </div>
@@ -58,7 +67,7 @@
     <div class="col-md-6">
       <div class="tile">
         <h3 class="tile-title">Slider</h3>
-        
+
         <div class="tile-body">
           <form class="form-horizontal" method="POST" action="{{ route('storeimage') }}" enctype="multipart/form-data">
             @csrf
@@ -120,7 +129,7 @@
         </div>
       </div>
     </div>
-    
+
     <div class="col-md-6">
       <div class="tile">
         <h3 class="tile-title">Subscribe</h3>

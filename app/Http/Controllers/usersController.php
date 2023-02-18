@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\userRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,22 +21,19 @@ class usersController extends Controller
         return view('auth.signUp', compact('title', 'country'));
     }
 
-    public function store(Request $request)
+    public function store(userRequest $request)
     {
-        $attributes = $request->validate([
-            'FirstName' => 'required|string',
-            'LastName' => 'required|string',
-            'email' => 'required|email',
-            'gender' => ['required',Rule::in(['male','female'])],
-            'address' => 'required',
-            'city' => ['required','regex:/^\b\w+\b$/'],
-            'country' => ['required'],
-            'password' => 'required|confirmed',
+        $request['password'] = Hash::make($request['password']);
+        $user = User::create([
+            'FirstName' => $request['FirstName'],
+            'LastName' => $request['LastName'],
+            'email' => $request['email'],
+            'gender' => $request['gender'],
+            'address' => $request['address'],
+            'country' => $request['country'],
+            'city' => $request['city'],
+            'password' => Hash::make($request['password']),
         ]);
-
-        $attributes['password'] = Hash::make($attributes['password']);
-
-        $user = User::create($attributes);
         auth()->login($user);
         return redirect('/');
     }

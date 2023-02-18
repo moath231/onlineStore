@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\categoryRequest;
 use App\Models\Category;
+use App\Models\photos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
@@ -22,13 +24,8 @@ class CategoryController extends Controller
         return view('admin.category.create', compact('title'));
     }
 
-    public function store(Request $request)
+    public function store(categoryRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'description' => 'required|min:16|unique:categories,description',
-            'logo' => 'required|image|mimes:png,jpg|max:2048',
-        ]);
 
         $category = new Category();
 
@@ -37,14 +34,11 @@ class CategoryController extends Controller
         $category->name = $request->name;
         $category->slug = $slug;
         $category->description = $request->description;
-        if (request()->file('logo')) {
-            $image1 = $request->file('logo');
-            $filename = uniqid() . '.' . $image1->getClientOriginalExtension();
-            $path = $image1->storeAs('public/images/category', $filename);
-            $path = str_replace('public', 'storage', $path);
-            $category->logo = $path;
-        }
+
+        
         $category->save();
+
+        photos::storeimage($request ,$category ,"logo","category" ,false);
 
         return redirect()
             ->route('category.index')
@@ -63,24 +57,15 @@ class CategoryController extends Controller
         return view('admin.category.edit', compact('title', 'category'));
     }
 
-    public function update(Request $request, $id)
+    public function update(categoryRequest $request, $id)
     {
         $category = Category::findOrFail($id);
-        $request->validate([
-            'name' => 'required',
-            'description' => ['required','min:16',Rule::unique('categories','description')->ignore($category)],
-            'logo' => 'image|mimes:png,jpg|max:2048',
-        ]);
 
         $category->name = $request->name;
         $category->description = $request->description;
-        if (request()->file('logo')) {
-            $image1 = $request->file('logo');
-            $filename = uniqid() . '.' . $image1->getClientOriginalExtension();
-            $path = $image1->storeAs('public/images/category', $filename);
-            $path = str_replace('public', 'storage', $path);
-            $category->logo = $path;
-        }
+
+        photos::storeimage($request ,$category ,"logo","category" ,true);
+
         $category->save();
 
         return redirect()

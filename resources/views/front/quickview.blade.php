@@ -8,20 +8,30 @@
               <article class="gallery-wrap">
                 <div class="img-big-wrap">
                   <div>
-                    <a href="{{ asset($productview->mainImage) }}" data-fancybox="">
-                      <img src="{{ asset($productview->mainImage) }}" width="270"></a>
+                    <a href="{{ asset($productview->photos->where('type', 'image1')->first()->src) }}" data-fancybox="">
+                      <img src="{{ asset($productview->photos->where('type', 'image1')->first()->src) }}"
+                        width="20"></a>
                   </div>
                 </div>
                 <div class="img-small-wrap">
-                  <a href="{{ asset($productview->image1) }}" data-fancybox="">
-                    <div class="item-gallery"> <img src="{{ asset($productview->image1) }}"></div>
-                  </a>
-                  <a href="{{ asset($productview->image2) }}" data-fancybox="">
-                    <div class="item-gallery"> <img src="{{ asset($productview->image2) }}"></div>
-                  </a>
-                  <a href="{{ asset($productview->image2) }}" data-fancybox="">
-                    <div class="item-gallery"> <img src="{{ asset($productview->image2) }}"></div>
-                  </a>
+                  @if ($productview->photos->where('type', 'image2')->count() > 0)
+                    <a href="{{ asset($productview->photos->where('type', 'image2')->first()->src) }}" data-fancybox="">
+                      <div class="item-gallery"> <img
+                          src="{{ asset($productview->photos->where('type', 'image2')->first()->src) }}"></div>
+                    </a>
+                  @endif
+                  @if ($productview->photos->where('type', 'image3')->count() > 0)
+                    <a href="{{ asset($productview->photos->where('type', 'image3')->first()->src) }}" data-fancybox="">
+                      <div class="item-gallery"> <img
+                          src="{{ asset($productview->photos->where('type', 'image3')->first()->src) }}"></div>
+                    </a>
+                  @endif
+                  @if ($productview->photos->where('type', 'image4')->count() > 0)
+                    <a href="{{ asset($productview->photos->where('type', 'image4')->first()->src) }}" data-fancybox="">
+                      <div class="item-gallery"> <img
+                          src="{{ asset($productview->photos->where('type', 'image4')->first()->src) }}"></div>
+                    </a>
+                  @endif
                 </div>
               </article>
             </aside>
@@ -38,15 +48,15 @@
                 <dl>
                   <dt>Description</dt>
                   <dd>
-                    <p>{{$productview->longDescription}}</p>
+                    <p>{{ $productview->longDescription }}</p>
                   </dd>
                 </dl>
                 <dl class="row">
                   <dt class="col-sm-3">Model#</dt>
-                  <dd class="col-sm-9">{{$productview->model}}</dd>
+                  <dd class="col-sm-9">{{ $productview->model }}</dd>
 
                   <dt class="col-sm-3">Color</dt>
-                  <dd class="col-sm-9">{{$productview->color}} </dd>
+                  <dd class="col-sm-9">{{ $productview->color }} </dd>
 
                   <dt class="col-sm-3">Delivery</dt>
                   <dd class="col-sm-9">Russia, USA, and Europe </dd>

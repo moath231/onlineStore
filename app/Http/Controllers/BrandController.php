@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\brandRequest;
 use App\Models\Brand;
+use App\Models\photos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
@@ -23,31 +25,19 @@ class BrandController extends Controller
         return view('admin.brand.create', compact('title'));
     }
 
-    public function store(Request $request)
+    public function store(brandRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'description' => 'required|min:16|unique:brands,description',
-            'logo' => 'required|image|mimes:png,jpg,svg|max:2048|dimensions:max_width=560,max_height=400',
-        ]);
-
         $brands = new Brand();
 
         $slug = Str::slug($request->description, '-');
-
 
         $brands->name = $request->name;
         $brands->slug = $slug;
         $brands->description = $request->description;
 
-        if (request()->file('logo')) {
-            $image1 = $request->file('logo');
-            $filename = uniqid() . '.' . $image1->getClientOriginalExtension();
-            $path = $image1->storeAs('public/images/brand', $filename);
-            $path = str_replace('public', 'storage', $path);
-            $brands->logo = $path;
-        }
         $brands->save();
+
+        photos::storeimage($request,$brands,"logo","brand",false);
 
         return redirect()
             ->route('brand.index')
@@ -66,27 +56,15 @@ class BrandController extends Controller
         return view('admin.brand.edit', compact('title','brand'));
     }
 
-    public function update(Request $request, $id)
+    public function update(brandRequest $request, $id)
     {
-        $category = Brand::findOrFail($id);
+        $brand = Brand::findOrFail($id);
 
-        $request->validate([
-            'name' => 'required',
-            'description' => ['required','min:16',Rule::unique('brands','description')->ignore($category)],
-            'logo' => 'image|mimes:png,jpg,svg|max:2048|dimensions:max_width=560,max_height=400',
-        ]);
+        $brand->name = $request->name;
+        $brand->description = $request->description;
+        photos::storeimage($request,$brand,"logo","brand",true);
 
-        $category->name = $request->name;
-        $category->description = $request->description;
-
-        if (request()->file('logo')) {
-            $image1 = $request->file('logo');
-            $filename = uniqid() . '.' . $image1->getClientOriginalExtension();
-            $path = $image1->storeAs('public/images/brand', $filename);
-            $path = str_replace('public', 'storage', $path);
-            $category->logo = $path;
-        }
-        $category->save();
+        $brand->save();
 
         return redirect()
             ->route('brand.index')

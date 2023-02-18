@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\photos;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use App\Http\Requests\productRequest;
+
 
 class ProductController extends Controller
 {
@@ -22,53 +25,9 @@ class ProductController extends Controller
         return view('admin.product.create', compact('title'));
     }
 
-    function store(Request $request)
+    function store(productRequest $request)
     {
-        $request->validate([
-            'Name' => 'required',
-            'Discrption' => 'required|min:45|max:70|unique:products,shortDescription',
-            'longDiscrption' => 'required|min:200',
-            'Stock' => 'required',
-            'Model' => 'required',
-            'Color' => '',
-            'Size' => '',
-            'image1' => 'required|mimes:jpeg,png,jpg|max:2048',
-            'image2' => 'mimes:jpeg,png,jpg|max:2048',
-            'image3' => 'mimes:jpeg,png,jpg|max:2048',
-            'image4' => 'mimes:jpeg,png,jpg|max:2048',
-            'price' => 'required|numeric',
-            'category' => 'required',
-            'brand' => 'required',
-        ]);
         $product = new Product();
-        if (request()->file('image1')) {
-            $image1 = $request->file('image1');
-            $filename = uniqid() . '.' . $image1->getClientOriginalExtension();
-            $path = $image1->storeAs('public/images/product', $filename);
-            $path = str_replace('public', 'storage', $path);
-            $product->mainImage = $path;
-        }
-        if (request()->file('image2')) {
-            $image2 = request()->file('image2');
-            $filename = uniqid() . '.' . $image2->getClientOriginalExtension();
-            $path = $image2->storeAs('public/images/product', $filename);
-            $path = str_replace('public', 'storage', $path);
-            $product->image1 = $path;
-        }
-        if (request()->file('image3')) {
-            $image3 = request()->file('image3');
-            $filename = uniqid() . '.' . $image3->getClientOriginalExtension();
-            $path = $image3->storeAs('public/images/product', $filename);
-            $path = str_replace('public', 'storage', $path);
-            $product->image2 = $path;
-        }
-        if (request()->file('image4')) {
-            $image4 = request()->file('image4');
-            $filename = uniqid() . '.' . $image4->getClientOriginalExtension();
-            $path = $image4->storeAs('public/images/product', $filename);
-            $path = str_replace('public', 'storage', $path);
-            $product->image3 = $path;
-        }
 
         $slug = Str::slug($request->Discrption, '-');
 
@@ -85,6 +44,11 @@ class ProductController extends Controller
         $product->brand_id = $request->brand;
 
         $product->save();
+
+        Photos::storeimage($request, $product, 'image1',"product",false);
+        Photos::storeimage($request, $product, 'image2',"product",false);
+        Photos::storeimage($request, $product, 'image3',"product",false);
+        Photos::storeimage($request, $product, 'image4',"product",false);
 
         return redirect()
             ->route('product.index')
@@ -103,65 +67,25 @@ class ProductController extends Controller
         return view('admin.product.edit', compact('title', 'product'));
     }
 
-    function update(Request $request, $id)
+    function update(productRequest $request, $id)
     {
         $product = Product::findOrFail($id);
-        $validatedData = $request->validate([
-            'Name' => 'required',
-            'Discrption' => ['required', 'min:45', 'max:70', Rule::unique('products', 'shortDescription')->ignore($product)],
-            'longDiscrption' => 'required|min:200',
-            'Stock' => 'required',
-            'Model' => 'required',
-            'Color' => 'required',
-            'Size' => 'required',
-            'image1' => 'mimes:jpeg,png,jpg|max:2048',
-            'image2' => 'mimes:jpeg,png,jpg|max:2048',
-            'image3' => 'mimes:jpeg,png,jpg|max:2048',
-            'image4' => 'mimes:jpeg,png,jpg|max:2048',
-            'price' => 'required|numeric',
-            'category' => 'required',
-            'brand' => 'required',
-        ]);
 
-        if (request()->file('image1')) {
-            $image1 = $request->file('image1');
-            $filename = uniqid() . '.' . $image1->getClientOriginalExtension();
-            $path = $image1->storeAs('public/images/product', $filename);
-            $path = str_replace('public', 'storage', $path);
-            $product->mainImage = $path;
-        }
-        if (request()->file('image2')) {
-            $image2 = request()->file('image2');
-            $filename = uniqid() . '.' . $image2->getClientOriginalExtension();
-            $path = $image2->storeAs('public/images/product', $filename);
-            $path = str_replace('public', 'storage', $path);
-            $product->image1 = $path;
-        }
-        if (request()->file('image3')) {
-            $image3 = request()->file('image3');
-            $filename = uniqid() . '.' . $image3->getClientOriginalExtension();
-            $path = $image3->storeAs('public/images/product', $filename);
-            $path = str_replace('public', 'storage', $path);
-            $product->image2 = $path;
-        }
-        if (request()->file('image4')) {
-            $image4 = request()->file('image4');
-            $filename = uniqid() . '.' . $image4->getClientOriginalExtension();
-            $path = $image4->storeAs('public/images/product', $filename);
-            $path = str_replace('public', 'storage', $path);
-            $product->image3 = $path;
-        }
+        Photos::storeimage($request, $product, 'image1',"product",true);
+        Photos::storeimage($request, $product, 'image2',"product",true);
+        Photos::storeimage($request, $product, 'image3',"product",true);
+        Photos::storeimage($request, $product, 'image4',"product",true);
 
-        $product->name = $validatedData['Name'];
-        $product->shortDescription = $validatedData['Discrption'];
-        $product->longDescription = $validatedData['longDiscrption'];
-        $product->stock = $validatedData['Stock'];
-        $product->model = $validatedData['Model'];
-        $product->color = $validatedData['Color'];
-        $product->size = $validatedData['Size'];
-        $product->price = $validatedData['price'];
-        $product->category_id = $validatedData['category'];
-        $product->brand_id = $validatedData['brand'];
+        $product->name = $request['Name'];
+        $product->shortDescription = $request['Discrption'];
+        $product->longDescription = $request['longDiscrption'];
+        $product->stock = $request['Stock'];
+        $product->model = $request['Model'];
+        $product->color = $request['Color'];
+        $product->size = $request['Size'];
+        $product->price = $request['price'];
+        $product->category_id = $request['category'];
+        $product->brand_id = $request['brand'];
 
         $product->save();
 
