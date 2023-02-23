@@ -38,7 +38,6 @@
             <aside class="col-sm-7">
               <article class="p-5">
                 <h3 class="title mb-3">{{ $productview->name }}</h3>
-
                 <div class="mb-3">
                   <var class="price h3 text-warning">
                     <span class="currency">US $</span><span class="num">{{ $productview->price }}</span>
@@ -54,15 +53,12 @@
                 <dl class="row">
                   <dt class="col-sm-3">Model#</dt>
                   <dd class="col-sm-9">{{ $productview->model }}</dd>
-
                   <dt class="col-sm-3">Color</dt>
                   <dd class="col-sm-9">{{ $productview->color }} </dd>
-
                   <dt class="col-sm-3">Delivery</dt>
                   <dd class="col-sm-9">Russia, USA, and Europe </dd>
                 </dl>
                 <div class="rating-wrap">
-
                   <ul class="rating-stars">
                     <li style="width:80%" class="stars-active">
                       <i class="fa fa-star"></i> <i class="fa fa-star"></i>
@@ -79,45 +75,40 @@
                   <div class="label-rating">154 orders </div>
                 </div>
                 <hr>
-                <div class="row">
-                  <div class="col-sm-5">
-                    <dl class="dlist-inline">
-                      <dt>Quantity: </dt>
-                      <dd>
-                        <select class="form-control form-control-sm" style="width:70px;">
-                          <option> 1 </option>
-                          <option> 2 </option>
-                          <option> 3 </option>
-                        </select>
-                      </dd>
-                    </dl>
+                <form action="/addToCart" method="POST">
+                  @csrf
+                  <input type="hidden" name="productId" value="{{ $productview->id }}">
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <dl class="dlist-inline">
+                        <dt>Quantity: </dt>
+                        <input type="number" name="quantity" style="width:120px;" value="1">
+                        <x-form.error name="quantity"/>
+                      </dl>
+                    </div>
+                    <div class="col-sm-7">
+                      <dl class="dlist-inline">
+                        <dt>Size:</dt>
+                        <dd>
+                          <label class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" id="inlineRadio2" value="option2">
+                            <span class="form-check-label">SM</span>
+                          </label>
+                          <label class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" id="inlineRadio2" value="option2">
+                            <span class="form-check-label">MD</span>
+                          </label>
+                          <label class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" id="inlineRadio2" value="option2">
+                            <span class="form-check-label">XXL</span>
+                          </label>
+                        </dd>
+                      </dl>
+                    </div>
                   </div>
-                  <div class="col-sm-7">
-                    <dl class="dlist-inline">
-                      <dt>Size: </dt>
-                      <dd>
-                        <label class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
-                            value="option2">
-                          <span class="form-check-label">SM</span>
-                        </label>
-                        <label class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
-                            value="option2">
-                          <span class="form-check-label">MD</span>
-                        </label>
-                        <label class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
-                            value="option2">
-                          <span class="form-check-label">XXL</span>
-                        </label>
-                      </dd>
-                    </dl>
-                  </div>
-                </div>
-                <hr>
-                <a href="#" class="btn btn-primary"> Buy now </a>
-                <a href="#" class="btn btn-outline-primary"> <i class="fas fa-shopping-cart"></i> Add to cart </a>
+                  <hr>
+                  <button type="submit" class="btn btn-outline-primary"> <i class="fas fa-shopping-cart"></i> Add to cart</button>
+                </form>
               </article>
             </aside>
           </div>

@@ -12,8 +12,6 @@ class Product extends Model
 
     protected $guarded = [];
 
-    public static $rules = [];
-
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? false, fn($query, $search) => $query->where('shortDescription', 'like', '%' . $search . '%')->orWhere('longDescription', 'like', '%' . $search . '%'));
@@ -45,5 +43,10 @@ class Product extends Model
     public function photos()
     {
         return $this->morphMany(photos::class, 'photoable');
+    }
+
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
     }
 }

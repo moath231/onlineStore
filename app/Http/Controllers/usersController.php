@@ -21,44 +21,56 @@ class usersController extends Controller
         return view('auth.signUp', compact('title', 'country'));
     }
 
+    public function indexlogin()
+    {
+        $title = 'login';
+        return view('auth.login', compact('title'));
+    }
+
     public function store(userRequest $request)
     {
-        $request['password'] = Hash::make($request['password']);
-        $user = User::create([
-            'FirstName' => $request['FirstName'],
-            'LastName' => $request['LastName'],
-            'email' => $request['email'],
-            'gender' => $request['gender'],
-            'address' => $request['address'],
-            'country' => $request['country'],
-            'city' => $request['city'],
-            'password' => Hash::make($request['password']),
-        ]);
-        auth()->login($user);
-        return redirect('/');
+        $user = new User;
+
+        $user->first_name = $request['FirstName'];
+        $user->last_name = $request['FirstName'];
+        $user->email = $request['email'];
+        $user->gender = $request['gender'];
+        $user->address = $request['address'];
+        $user->country = $request['country'];
+        $user->city = $request['city'];
+        $user->password = bcrypt($request['password']);
+
+        $user->save();
+
+        // auth()->login($user);
+        return redirect()->route('login');
     }
 
     public function login(Request $request)
     {
-        $attributes = $request->validate([
+        $request->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
 
         $credentials = $request->only('email', 'password');
-
         if (Auth::attempt($credentials)) {
-            // Authentication passed...
+            // Authentication passed ...
+            $user = User::where(['email' => $request->email])->first();
+            $request->session()->put('user', $user);
             return redirect('/');
         } else {
             // Authentication failed...
-            return back()->withErrors(['email' => 'The email or password is incorrect.']);
+            return back()
+                ->withErrors(['email' => 'The email or password is incorrect.'])
+                ->withInput();
         }
     }
 
     public function logout()
     {
         auth()->logout();
+        session()->forget('user');
         return redirect('/');
     }
 }

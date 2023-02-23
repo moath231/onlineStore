@@ -1,3 +1,7 @@
+<?php
+use App\Http\Controllers\CartController;
+$cartCount = CartController::cartItem();
+?>
 <section class="header-main">
   <div class="container">
     <div class="row align-items-center">
@@ -13,16 +17,20 @@
 
       <div class="col-lg-3 col-sm-6">
         <div class="widgets-wrap d-flex justify-content-end">
-          {{-- <div class="widget-header">
-            <a href="#" class="icontext position-relative">
-              <div class="icon-wrap icon-xs cart-color">
-                <i class="fas fa-shopping-basket shopping-basket"></i>
-              </div>
-              <div class="text-wrap position-absolute position-topright cart-color">
-                <span>3</span>
-              </div>
-            </a>
-          </div> --}}
+
+          @auth
+            <div class="dropdown cartStyle">
+              <a href="{{ route('cart') }}" class="icontext">
+                <div class="icon-wrap icon-xs position-top cart-color">
+                  {{-- <i class="fas fa-shopping-basket shopping-basket"></i> --}}
+                  <i class="fas fa-shopping-cart shopping-basket"></i>
+                </div>
+                <div class="text-wrap position-absolute position-topright cart-color">
+                  <span>{{ $cartCount }}</span>
+                </div>
+              </a>
+            </div>
+          @endauth
 
           <div class="widget-header dropdown">
             <a href="#" class="icontext ml-3" data-toggle="dropdown" data-offset="100,15">
@@ -45,7 +53,7 @@
                   </div>
                 </div>
               @else
-                <form class="px-4 py-3" method="post" action="/login">
+                <form class="px-4 py-3" method="POST" action="/login">
                   @csrf
                   <div class="form-group">
                     <label>Email address</label>
@@ -68,13 +76,14 @@
             </div>
           </div>
 
-          <div class="dropdown">
-            <a href="#" class="icontext ml-3" data-toggle="dropdown" data-offset="70,29">
-              <div class="icon-wrap burgericon">
-                <i class="fa-light fa-list-ul"></i>
-              </div>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right">
+          @guest
+            <div class="dropdown">
+              <a href="#" class="icontext ml-3" data-toggle="dropdown" data-offset="70,29">
+                <div class="icon-wrap burgericon">
+                  <i class="fa-light fa-list-ul"></i>
+                </div>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right">
                 <div class="px-1 pt-3">
                   <div class="form-group dropDown">
                     <li>
@@ -83,8 +92,9 @@
                     </li>
                   </div>
                 </div>
+              </div>
             </div>
-          </div>
+          @endguest
 
         </div>
       </div>

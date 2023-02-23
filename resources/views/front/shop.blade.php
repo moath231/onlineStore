@@ -231,7 +231,11 @@
                           <del class="price-old">$1980</del>
                         </div>
                       </div>
-                      <a href="#" class="btn btn-block btn-primary">Add to cart </a>
+                      <form action="/addToCart" method="POST">
+                        @csrf
+                        <input type="hidden" name="productId" value="{{ $pro->id }}">
+                        <button class="btn btn-block btn-primary">Add to cart</button>
+                      </form>
                     </figcaption>
                   </figure>
                 </div>
@@ -285,6 +289,17 @@
 
       $(function() {
         $('.btn-overlay').click(function(event) {
+          event.preventDefault();
+          var url = $(this).attr('href');
+          $.get(url, function(data) {
+            $('#quickview-modal .modal-body').html(data);
+            $('#quickview-modal').modal('show');
+          });
+        });
+      });
+
+      $(function() {
+        $('.quckviewB').click(function(event) {
           event.preventDefault();
           var url = $(this).attr('href');
           $.get(url, function(data) {

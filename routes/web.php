@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\adminController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Home;
 use App\Http\Controllers\homeAdmin;
@@ -28,9 +29,11 @@ Route::get('/shop/{id}/quickview', [ShopPage::class,'quickview']);
 
 Route::get('/register',[usersController::class,'index'])->name('regster');
 Route::post('/register',[usersController::class,'store']);
-Route::get('/logout',[usersController::class,'logout']);
-Route::post('/login',[usersController::class,'login']);
 
+Route::post('/login',[usersController::class,'login']);
+Route::get('/login',[usersController::class,'indexlogin'])->name('login');
+
+Route::get('/logout',[usersController::class,'logout']);
 
 Route::resource('admin',adminController::class)->only('index');
 
@@ -42,6 +45,9 @@ Route::resource('admin/product',ProductController::class);
 Route::post('admin/product/approve/{id}', [ProductController::class, 'approve']);
 Route::post('admin/product/hide/{id}', [ProductController::class, 'hide']);
 
+Route::post('addToCart', [CartController::class, 'addToCart']);
+
+Route::get('card', [CartController::class, 'index'])->name('cart');
 
 Route::resource('admin/category',CategoryController::class);
 
