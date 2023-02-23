@@ -21,136 +21,65 @@
               </thead>
               <tbody>
 
-                @foreach ($cartItem as $cart)
-                    <tr>
-                      <td style="width: 100px;">
-                        <figure class="media">
-                          <div class="img-wrap">
-                            <img src="{{ $cart->product->photos->where('type', 'image1')->first()->src }}" class="img-thumbnail img-sm">
-                          </div>
-                          <figcaption class="media-body">
-                            <h6 class="title text-truncate">{{ $cart->product->name }} </h6>
-                            <dl class="dlist-inline small">
-                              {{-- <dt>Size: </dt>
+                @foreach ($cartItems as $cart)
+                  <tr>
+                    <td style="width: 100px;">
+                      <figure class="media">
+                        <div class="img-wrap">
+                          <img src="{{ $cart['product']->photos->where('type', 'image1')->first()->src }}"
+                            class="img-thumbnail img-sm">
+                        </div>
+                        <figcaption class="media-body">
+                          <h6 class="title text-truncate">{{ $cart['product']->name }} </h6>
+                          <dl class="dlist-inline small">
+                            {{-- <dt>Size: </dt>
                             <dd>XXL</dd> --}}
-                            </dl>
-                            <dl class="dlist-inline small">
-                              {{-- <dt>Color: </dt>
+                          </dl>
+                          <dl class="dlist-inline small">
+                            {{-- <dt>Color: </dt>
                             <dd>Orange color</dd> --}}
-                            </dl>
-                          </figcaption>
-                        </figure>
-                      </td>
-                      <td>
-                        <div class="">
-                          <input type="number" name="Quantity" id="Quantity" value=""
-                            style="width: 100px">
-                        </div>
-                      </td>
-                      <td>
-                        <div class="price-wrap">
-                          <var class="price">USD {{ $cart->product->price }}</var>
-                          <small class="text-muted">(USD5 each)</small>
-                        </div>
-                        <!-- price-wrap .// -->
-                      </td>
-                      <td class="text-right">
+                          </dl>
+                        </figcaption>
+                      </figure>
+                    </td>
+                    <td>
+                      <div class="">
+                        <input type="number" name="quantity" id="quantity-{{ $cart['product']->id }}"
+                          value="{{ $cart['quantity'] }}" style="width: 100px" class="quantity-input"
+                          data-product-id="{{ $cart['product']->id }}">
+                      </div>
+                    </td>
+                    <td>
+                      <div class="price-wrap">
+                        <var class="price">USD {{ $cart['product']->price * $cart['quantity'] }}</var>
+                        <small class="text-muted">(USD7 each)</small>
+                      </div>
+                      <!-- price-wrap .// -->
+                    </td>
+                    <td class="cartButton text-right">
+                      <form action="">
                         <a data-original-title="Save to Wishlist" title="" href=""
                           class="btn btn-outline-success" data-toggle="tooltip"> <i class="fa fa-heart"></i></a>
-                        <a href="" class="btn btn-outline-danger"> × Remove</a>
-                      </td>
-                    </tr>
+                      </form>
+                      <form action="/cart/distroy/{{ $cart['product']->id }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-outline-danger"> × Remove</button>
+                      </form>
+                    </td>
+                  </tr>
                 @endforeach
 
-                <tr>
-                  <td>
-                    <figure class="media">
-                      <div class="img-wrap"><img src="images/items/2.jpg" class="img-thumbnail img-sm"></div>
-                      <figcaption class="media-body">
-                        <h6 class="title text-truncate">Product name goes here </h6>
-                        <dl class="dlist-inline small">
-                          <dt>Size: </dt>
-                          <dd>XXL</dd>
-                        </dl>
-                        <dl class="dlist-inline small">
-                          <dt>Color: </dt>
-                          <dd>Orange color</dd>
-                        </dl>
-                      </figcaption>
-                    </figure>
-                  </td>
-                  <td>
-                    <select class="form-control">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                    </select>
-                  </td>
-                  <td>
-                    <div class="price-wrap">
-                      <var class="price">USD 35</var>
-                      <small class="text-muted">(USD10 each)</small>
-                    </div>
-                    <!-- price-wrap .// -->
-                  </td>
-                  <td class="text-right">
-                    <a data-original-title="Save to Wishlist" title="" href=""
-                      class="btn btn-outline-success" data-toggle="tooltip"> <i class="fa fa-heart"></i></a>
-                    <a href="" class="btn btn-outline-danger btn-round"> × Remove</a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <figure class="media">
-                      <div class="img-wrap"><img src="images/items/3.jpg" class="img-thumbnail img-sm"></div>
-                      <figcaption class="media-body">
-                        <h6 class="title text-truncate">Product name goes here </h6>
-                        <dl class="dlist-inline small">
-                          <dt>Size: </dt>
-                          <dd>XXL</dd>
-                        </dl>
-                        <dl class="dlist-inline small">
-                          <dt>Color: </dt>
-                          <dd>Orange color</dd>
-                        </dl>
-                      </figcaption>
-                    </figure>
-                  </td>
-                  <td>
-                    <select class="form-control">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                    </select>
-                  </td>
-                  <td>
-                    <div class="price-wrap">
-                      <var class="price">USD 45</var>
-                      <small class="text-muted">(USD15 each)</small>
-                    </div>
-                    <!-- price-wrap .// -->
-                  </td>
-                  <td class="text-right">
-                    <a data-original-title="Save to Wishlist" title="" href=""
-                      class="btn btn-outline-success" data-toggle="tooltip"> <i class="fa fa-heart"></i></a>
-                    <a href="" class="btn btn-outline-danger btn-round"> × Remove</a>
-                  </td>
-                </tr>
               </tbody>
             </table>
           </div>
-          <!-- card.// -->
 
         </main>
-        <!-- col.// -->
         <aside class="col-sm-3">
           <p class="alert alert-success">Add USD 5.00 of eligible items to your order to qualify for FREE Shipping.
           </p>
           <dl class="dlist-align">
             <dt>Total price: </dt>
-            <dd class="text-right">USD 568</dd>
+            <dd class="text-right">USD {{ $totalPrice }}</dd>
           </dl>
           <dl class="dlist-align">
             <dt>Discount:</dt>
@@ -161,12 +90,25 @@
             <dd class="text-right"><strong>USD 1,650</strong></dd>
           </dl>
           <hr>
+          <div class="form-group coupon">
+            <label>Have coupon?</label>
+            <form action="{{ route('applycoupon') }}" method="post">
+              @csrf
+              <div class="input-group">
+                <input type="text" class="form-control" name="" placeholder="Coupon code">
+                <span class="input-group-append">
+                  <button class="btn btn-success">Apply</button>
+                </span>
+              </div>
+            </form>
+          </div>
           <figure class="itemside mb-3">
             <aside class="aside"><img src="images/icons/pay-visa.png"></aside>
             <div class="text-wrap small text-muted">
               Pay 84.78 AED ( Save 14.97 AED ) By using ADCB Cards
             </div>
           </figure>
+
           <figure class="itemside mb-3">
             <aside class="aside"> <img src="images/icons/pay-mastercard.png"> </aside>
             <div class="text-wrap small text-muted">
@@ -180,7 +122,29 @@
       </div>
 
     </div>
-    <!-- container .//  -->
   </section>
+
+  @push('updateQuantity')
+    <script>
+      $(document).ready(function() {
+        $('.quantity-input').on('change', function() {
+          var productId = $(this).data('product-id');
+          var quantity = $(this).val();
+          $.ajax({
+            type: "POST",
+            url: "/cart/update-quantity",
+            data: {
+              _token: '{{ csrf_token() }}',
+              productId: productId,
+              quantity: quantity
+            },
+            success: function() {
+              location.reload();
+            }
+          });
+        });
+      });
+    </script>
+  @endpush
 
 </x-front.front>

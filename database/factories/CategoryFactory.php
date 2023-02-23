@@ -6,14 +6,13 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CategoryFactory extends Factory
 {
-
     public function definition()
     {
         return [
-            'name'=>fake()->name(),
-            'slug'=>fake()->slug(),
-            'description'=>fake()->sentence(),
-            'logo'=>fake()->image()
+            'name' => fake()->name(),
+            'slug' => fake()->slug(),
+            'description' => fake()->sentence(),
+            'logo' => asset('images/logo-dark.png'),
         ];
     }
 }

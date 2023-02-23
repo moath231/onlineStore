@@ -4,6 +4,7 @@ use App\Http\Controllers\adminController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CouponController;
 use App\Http\Controllers\Home;
 use App\Http\Controllers\homeAdmin;
 use App\Http\Controllers\ProductController;
@@ -48,6 +49,12 @@ Route::post('admin/product/hide/{id}', [ProductController::class, 'hide']);
 Route::post('addToCart', [CartController::class, 'addToCart']);
 
 Route::get('card', [CartController::class, 'index'])->name('cart');
+Route::POST('cart/update-quantity', [CartController::class, 'updateQuantity'])->name('cart.updateQuantity');
+Route::POST('cart/distroy/{id}', [CartController::class, 'distroy']);
+
+Route::get('admin/coupon',[CouponController::class, 'index'])->name('couponIndex');
+
+Route::post('apply-coupon',[CouponController::class, 'applycoupon'])->name('applycoupon');
 
 Route::resource('admin/category',CategoryController::class);
 

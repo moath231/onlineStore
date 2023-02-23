@@ -68,7 +68,7 @@
                 use and Privacy Policy.</small>
             </form>
           </article>
-          <div class="border-top card-body text-center">Have an account? <a href="">Log In</a></div>
+          <div class="border-top card-body text-center">Have an account? <a href="{{ route('login') }}">Log In</a></div>
         </div>
       </div>
     </div>

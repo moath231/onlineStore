@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        $this->call(\Lwwcas\LaravelCountries\Database\Seeders\LcDatabaseSeeder::class);
+        // $this->call(\Lwwcas\LaravelCountries\Database\Seeders\LcDatabaseSeeder::class);
 
         // \App\Models\User::factory()->create([
         //     'FirstName' => 'moath',

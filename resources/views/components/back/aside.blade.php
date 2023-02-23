@@ -83,6 +83,13 @@
       </ul>
     </li>
 
+    <li>
+      <a class="app-menu__item {{  Request::is('couponIndex') ? 'active' : '' }}" href="{{ route('couponIndex') }}">
+        <i class="app-menu__icon fa fa-dashboard"></i>
+        <span class="app-menu__label">Coupon</span>
+      </a>
+    </li>
+
 
   </ul>
 </aside>

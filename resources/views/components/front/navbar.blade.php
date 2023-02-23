@@ -43,8 +43,16 @@ $cartCount = CartController::cartItem();
                 <div class="px-1 pt-3">
                   <div class="form-group dropDown">
                     <li>
-                      <i class="fa fa-shopping-basket"></i>
+                      <i class="fa-solid fa-user"></i>
+                      <a class="logout" href="">account</a>
+                    </li>
+                    <li>
+                      <i class="fas fa-store"></i>
                       <a class="logout" href="{{ route('shop') }}">shop</a>
+                    </li>
+                    <li>
+                      <i class="fa-regular fa-star-shooting"></i>
+                      <a class="logout" href="">Wishlist</a>
                     </li>
                     <li>
                       <i class="fa fa-sign-out"></i>

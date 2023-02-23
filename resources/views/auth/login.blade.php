@@ -14,15 +14,16 @@
           <article class="card-body">
             <form method="POST" action="/login">
               @csrf
+
+              <a href="#" class="btn btn-faceboo btn-block mb-2"> <i class="fab fa-facebook-f"></i> &nbsp  Sign in with Facebook</a>
+              <a href="#" class="btn btn-google btn-block mb-4"> <i class="fab fa-google"></i> &nbsp  Sign in with Google</a>
               <div class="form-group">
                 <x-form.input name="email" type="email" autocomplete="off" />
                 <small class="form-text text-muted">We'll never share your email with anyone else.</small>
               </div>
-
               <div class="form-group">
                 <x-form.input name="password" type="password" autocomplete="off"/>
               </div>
-
               <div class="form-group mt-5">
                 <button type="submit" class="btn btn-primary btn-block"> login </button>
               </div>
