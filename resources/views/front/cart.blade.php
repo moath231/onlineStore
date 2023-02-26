@@ -1,3 +1,13 @@
+<?php
+  if(session()->has('coupon')){
+    $couponCode = Session::get('coupon.code');
+    $discountPercentage = Session::get('coupon.discount_percentage');
+  } else {
+    $discountPercentage = 0;
+    $couponCode = '';
+  }
+?>
+
 <x-front.front title="{{ $title }}">
   <x-section.breadcrumb title="shop">
     <li class="breadcrumb-item"><a href="{{ route('shop') }}">shop</a></li>
@@ -75,7 +85,8 @@
 
         </main>
         <aside class="col-sm-3">
-          <p class="alert alert-success">Add USD 5.00 of eligible items to your order to qualify for FREE Shipping.
+          <p class="alert alert-success">
+            Add USD 5.00 of eligible items to your order to qualify for FREE Shipping.
           </p>
           <dl class="dlist-align">
             <dt>Total price: </dt>
@@ -83,11 +94,12 @@
           </dl>
           <dl class="dlist-align">
             <dt>Discount:</dt>
-            <dd class="text-right">USD 658</dd>
+            <dd class="text-right">USD {{ ($discountPercentage / 100) * $totalPrice }}</dd>
           </dl>
           <dl class="dlist-align h4">
             <dt>Total:</dt>
-            <dd class="text-right"><strong>USD 1,650</strong></dd>
+            <dd class="text-right"><strong>USD {{ $totalPrice - ($discountPercentage / 100) * $totalPrice }}</strong>
+            </dd>
           </dl>
           <hr>
           <div class="form-group coupon">
@@ -95,11 +107,27 @@
             <form action="{{ route('applycoupon') }}" method="post">
               @csrf
               <div class="input-group">
-                <input type="text" class="form-control" name="" placeholder="Coupon code">
+                <input type="text" class="form-control" name="coupon_code" placeholder="Coupon code"
+                  value="{{ $couponCode }}">
                 <span class="input-group-append">
                   <button class="btn btn-success">Apply</button>
                 </span>
               </div>
+
+              @if ($errors->any())
+                <div class="alert alert-danger mt-3">
+                  @foreach ($errors->all() as $error)
+                    <div>{{ $error }}</div>
+                  @endforeach
+                </div>
+              @endif
+
+              @if (session('success'))
+                <div id="success-message" class="alert alert-success mt-3">
+                  {{ session('success') }}
+                </div>
+              @endif
+
             </form>
           </div>
           <figure class="itemside mb-3">
@@ -116,7 +144,7 @@
               <br> Lorem ipsum dolor
             </div>
           </figure>
-          <a href="#" class="btn btn-success btn-lg btn-block">Proceed To Checkout</a>
+          <a href="{{ route('checkout.index') }}" class="btn btn-success btn-lg btn-block">Proceed To Checkout</a>
         </aside>
         <!-- col.// -->
       </div>
@@ -144,6 +172,11 @@
           });
         });
       });
+
+      // Hide the success message after 5 seconds
+      setTimeout(function() {
+        document.getElementById('success-message').style.display = 'none';
+      }, 2000);
     </script>
   @endpush
 

@@ -7,8 +7,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rule;
 
 class usersController extends Controller
 {
@@ -29,7 +27,7 @@ class usersController extends Controller
 
     public function store(userRequest $request)
     {
-        $user = new User;
+        $user = new User();
 
         $user->first_name = $request['FirstName'];
         $user->last_name = $request['FirstName'];

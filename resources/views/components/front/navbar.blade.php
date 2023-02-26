@@ -78,7 +78,7 @@ $cartCount = CartController::cartItem();
                   <button type="submit" class="btn btonstyle">Sign in</button>
                 </form>
                 <hr class="dropdown-divider">
-                <a class="dropdown-item" href="{{ route('regster') }}">Have account? Sign up</a>
+                <a class="dropdown-item" href="{{ route('register') }}">Have account? Sign up</a>
                 <a class="dropdown-item" href="#">Forgot password?</a>
               @endauth
             </div>

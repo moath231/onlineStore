@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\Home;
 use App\Http\Controllers\homeAdmin;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShopPage;
 use App\Http\Controllers\usersController;
@@ -28,7 +29,7 @@ Route::get('/', [Home::class,'index'])->name('home');
 Route::get('shop', [ShopPage::class,'index'])->name('shop');
 Route::get('/shop/{id}/quickview', [ShopPage::class,'quickview']);
 
-Route::get('/register',[usersController::class,'index'])->name('regster');
+Route::get('/register',[usersController::class,'index'])->name('register');
 Route::post('/register',[usersController::class,'store']);
 
 Route::post('/login',[usersController::class,'login']);
@@ -52,7 +53,11 @@ Route::get('card', [CartController::class, 'index'])->name('cart');
 Route::POST('cart/update-quantity', [CartController::class, 'updateQuantity'])->name('cart.updateQuantity');
 Route::POST('cart/distroy/{id}', [CartController::class, 'distroy']);
 
+Route::resource('checkout',OrderController::class);
+
 Route::get('admin/coupon',[CouponController::class, 'index'])->name('couponIndex');
+Route::post('admin/coupon/store',[CouponController::class, 'store'])->name('couponStore');
+Route::post('admin/coupon/{id}',[CouponController::class, 'distroy']);
 
 Route::post('apply-coupon',[CouponController::class, 'applycoupon'])->name('applycoupon');
 
