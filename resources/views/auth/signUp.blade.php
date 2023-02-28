@@ -1,7 +1,7 @@
 <x-front.front title="{{ $title }}">
   
   <x-section.breadcrumb title="reguster">
-    <li class="breadcrumb-item"><a href="{{ route('regster') }}">reguster</a></li>
+    <li class="breadcrumb-item"><a href="{{ route('register') }}">reguster</a></li>
   </x-section.breadcrumb>
 
   <section class="section-content padding-y">

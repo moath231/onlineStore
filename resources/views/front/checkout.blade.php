@@ -77,20 +77,20 @@
                 </header>
                 <article class="card-body">
                   <dl class="dlist-align">
-                    <dt>Parameter: </dt>
-                    <dd class="text-right">Value name</dd>
+                    <dt>Items Subtotal: </dt>
+                    <dd class="text-right">{{ $totalamount }}</dd>
                   </dl>
                   <dl class="dlist-align">
-                    <dt>Color:</dt>
-                    <dd class="text-right">Orange and Black</dd>
+                    <dt>Tax total:</dt>
+                    <dd class="text-right">{{ $totalamount * 0.02}}</dd>
                   </dl>
                   <dl class="dlist-align">
-                    <dt>Material:</dt>
-                    <dd class="text-right">Leather</dd>
+                    <dt>Shipping:</dt>
+                    <dd class="text-right">Free</dd>
                   </dl>
                   <dl class="dlist-align">
                     <dt>Total cost: </dt>
-                    <dd class="h5 b text-right"> USD195 </dd>
+                    <dd class="h5 b text-right"> USD {{ $totalamount }}</dd>
                   </dl>
                 </article>
               </div>

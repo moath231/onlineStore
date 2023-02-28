@@ -29,7 +29,7 @@
               </div>
             </form>
           </article>
-          <div class="border-top card-body text-center">if you don't have account ! <a href="{{ route('regster') }}">register</a></div>
+          <div class="border-top card-body text-center">if you don't have account ! <a href="{{ route('register') }}">register</a></div>
         </div>
       </div>
     </div>

@@ -8,17 +8,17 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('shippings', function (Blueprint $table) {
+        Schema::create('shipments', function (Blueprint $table) {
             $table->id();
-            $table->string('method');
-            $table->decimal('price', 8, 2);
-            $table->string('delivery_time');
+            $table->foreignId('order_id');
+            $table->integer('amount');
+            $table->string('payment_method');
             $table->timestamps();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('shippings');
+        Schema::dropIfExists('shipments');
     }
 };

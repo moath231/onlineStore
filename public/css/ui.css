@@ -1819,7 +1819,7 @@ content: "<"; } .owl-next { right: -30px; content: ">" ; } /* slider main */ .sl
   padding-bottom: 10px; margin-bottom: 10px; } .itemlist { padding: 20px; border-bottom: 1px solid #eee; } .list-inline
   { margin-bottom: 0; } .list-inline-item { vertical-align: middle; } /* --------- description list --------*/
   [class*="dlist-" ] { margin-bottom: 5px; } [class*="dlist-" ] dd { margin-bottom: 0; } .dlist-inline dt, .dlist-inline
-  dd { display: inline-block; } .dlist-align dt { width: 90px; float: left; word-wrap: break-word; } .dlist-align dd {
+  dd { display: inline-block; } .dlist-align dt { width: fit-content; float: left; word-wrap: break-word; } .dlist-align dd {
   margin-left: 120px; vertical-align: baseline; } /* -------------------- list.row--------------------- */ ul.row,
   ul.row-sm { list-style: none; padding: 0; margin-bottom: 0; } /*=================lists=================*/
   [class*="list-" ] li:after { visibility: hidden; display: block; content: "" ; overflow: hidden; height: 0; clear:

@@ -30,4 +30,19 @@ class Order extends Model
     {
         return $this->hasOne(payments::class);
     }
+
+    public function billing()
+    {
+        return $this->belongsTo(Billing::class);
+    }
+
+    public function shipping()
+    {
+        return $this->belongsTo(Shipping::class);
+    }
+
+    public function shipment()
+    {
+        return $this->belongsTo(Shipment::class);
+    }
 }

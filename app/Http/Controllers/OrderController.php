@@ -3,48 +3,44 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\OrderDetails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $title = "checkout";
+
+        $title = 'checkout';
+        $data = json_decode($request->cartitem, true);
+
+        $totalamount = $request->totalamount;
+
+        if (!count($data)) {
+            return redirect()
+                ->back()
+                ->with('errorcart', 'Cart is empty');
+        }
+
+        $order = new Order();
+        $order->user_id = session()->get('user')->id;
+        $order->total_amount = $request->totalamount;
+        $order->save();
+
+        foreach ($data as $car) {
+            OrderDetails::create([
+                'order_id' => $order->id,
+                'product_id' => $car['product']['id'],
+                'quantity' => $car['quantity'],
+                'price' => $car['product']['price'],
+            ]);
+        }
+
         $country = DB::table('lc_countries_translations')
             ->where('locale', 'en')
             ->get();
 
-        return view('front.checkout',compact('title','country'));
-    }
-
-    public function create()
-    {
-        //
-    }
-
-    public function store(Request $request)
-    {
-        //
-    }
-
-    public function show(Order $order)
-    {
-        //
-    }
-
-    public function edit(Order $order)
-    {
-        //
-    }
-
-    public function update(Request $request, Order $order)
-    {
-        //
-    }
-
-    public function destroy(Order $order)
-    {
-        //
+        return view('front.checkout', compact('title', 'country', 'data','totalamount'));
     }
 }

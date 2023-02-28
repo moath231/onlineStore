@@ -7,14 +7,12 @@ use Illuminate\Http\Request;
 
 class PaymentsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        $title = "payment";
+        $payments = payments::all();
+        return view('admin.Payment.index',compact('title','payments'));
     }
 
     /**

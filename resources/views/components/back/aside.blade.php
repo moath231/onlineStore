@@ -90,6 +90,13 @@
       </a>
     </li>
 
+    <li>
+      <a class="app-menu__item {{  Request::is('payment.index') ? 'active' : '' }}" href="{{ route('payment.index') }}">
+        <i class="app-menu__icon fa fa-dashboard"></i>
+        <span class="app-menu__label">payment</span>
+      </a>
+    </li>
+
 
   </ul>
 </aside>

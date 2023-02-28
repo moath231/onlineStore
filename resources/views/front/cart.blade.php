@@ -144,7 +144,13 @@
               <br> Lorem ipsum dolor
             </div>
           </figure>
-          <a href="{{ route('checkout.index') }}" class="btn btn-success btn-lg btn-block">Proceed To Checkout</a>
+          <form action="/checkout" method="POST">
+            @csrf
+            <input type="hidden" value="{{ $cartItems }}" name="cartitem">
+            <input type="hidden" value="{{ $totalPrice }}" name="totalPrice">
+            <input type="hidden" value="{{ $totalPrice - ($discountPercentage / 100) * $totalPrice }}" name="totalamount">
+            <button href="{{ route('checkout.index') }}" type="submit" class="btn btn-success btn-lg btn-block">Proceed To Checkout</button>
+          </form>
         </aside>
         <!-- col.// -->
       </div>
