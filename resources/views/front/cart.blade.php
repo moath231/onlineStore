@@ -1,4 +1,4 @@
-<?php
+@php
   if(session()->has('coupon')){
     $couponCode = Session::get('coupon.code');
     $discountPercentage = Session::get('coupon.discount_percentage');
@@ -6,19 +6,25 @@
     $discountPercentage = 0;
     $couponCode = '';
   }
-?>
-
+@endphp
 <x-front.front title="{{ $title }}">
   <x-section.breadcrumb title="shop">
     <li class="breadcrumb-item"><a href="{{ route('shop') }}">shop</a></li>
   </x-section.breadcrumb>
 
-  <section class="section-content bg padding-y border-top">
+  
+  <section class="section-content bg padding-y border-top position-relative">
+    <div class="alerterror">
+      @if (session('errorcart'))
+        <div class="alert alert-danger">
+          <button class="close" type="button" data-dismiss="alert">×</button>
+            {{ session('errorcart') }} 
+        </div>
+      @endif
+    </div>
     <div class="container">
-
       <div class="row">
         <main class="col-sm-9">
-
           <div class="card">
             <table class="table-hover shopping-cart-wrap table">
               <thead class="text-muted">
@@ -30,7 +36,6 @@
                 </tr>
               </thead>
               <tbody>
-
                 @foreach ($cartItems as $cart)
                   <tr>
                     <td style="width: 100px;">

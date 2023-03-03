@@ -162,6 +162,21 @@ transition: .5s;
 -webkit-transform: scaleX(1);
 transform: scaleX(1); }
 
+/* ========== alerterror ========== */
+  .alerterror{
+    position: absolute;
+    left: 44%;
+    top: 31%;
+    transform: translate(-50%,-50%);
+    z-index: 11;
+  }
+
+  .alerterror button{
+    padding-left: 10px;
+  }
+/* ========== alerterror ========== */
+
+
 /* ========== input with icon ========== */
 .input-icon {
 position: relative; }

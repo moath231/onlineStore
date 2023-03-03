@@ -50,6 +50,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::POST('cart/distroy/{id}', [CartController::class, 'distroy']);
 
     Route::POST('checkout', [OrderController::class, 'index'])->name('checkout.index');
+    Route::POST('placeorder', [OrderController::class, 'placeorder'])->name('placeorder');
 
     Route::post('apply-coupon', [CouponController::class, 'applycoupon'])->name('applycoupon');
 });
