@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\Order;
 use App\Models\OrderDetails;
 use App\Models\Shipping;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
@@ -13,34 +15,22 @@ class OrderController extends Controller
     public function index(Request $request)
     {
         if (!count(json_decode($request->cartitem, true))) {
-            return redirect()->back()->with('errorcart', 'Cart is empty');
+            return redirect()
+                ->back()
+                ->with('errorcart', 'Cart is empty');
         }
         $title = 'checkout';
         $data = $request->cartitem;
         $totalamount = $request->totalamount;
-        $country = DB::table('lc_countries_translations')->where('locale', 'en')->get();
-        return view('front.checkout', compact('title', 'country', 'data','totalamount'));
+        $country = DB::table('lc_countries_translations')
+            ->where('locale', 'en')
+            ->get();
+        return view('front.checkout', compact('title', 'country', 'data', 'totalamount'));
     }
 
     public function placeorder(Request $request)
     {
-        // dd($request->all());
-        // $request->validate([
-        //     'first_name' => 'required|string|max:255',
-        //     'last_name' => 'required|string|max:255',
-        //     'address' => 'required|string|max:255',
-        //     'addressO' => 'nullable|string|max:255',
-        //     'state' => 'required|string|max:255',
-        //     'zipcode' => 'required|string|size:5',
-        //     'city' => 'required|string|max:255',
-        //     'country' => 'required|string|max:255',
-        //     'phone' => ['required', 'regex:/^[2-9]\d{2}-\d{3}-\d{4}$/'],
-        //     'email' => 'required|email|max:255',
-        //     'notes' => 'required|string|max:255',
-        // ]);
         $data = json_decode($request->cartitem);
-        // dd($data);
-
 
         $order = new Order();
         $order->user_id = session()->get('user')->id;
@@ -68,10 +58,28 @@ class OrderController extends Controller
             'country' => $request->country,
             'phone' => $request->phone,
             'email' => $request->email,
-            'notes' => $request->notes,
+            'note' => $request->notes,
         ]);
-        
 
-        return redirect('/');
+        $cart = Cart::where('user_id', Auth::id())->get();
+        foreach ($cart as $car) {
+            $car->delete();
+        }
+
+        session()->forget('coupon');
+
+        return redirect()->route('payment');
     }
+
+
+    public function payment()
+    {
+        $title = "";
+        $order = Order::where('user_id',Auth::id())->get();
+        $orderdetils = OrderDetails::where('order_id',$order[0]->id)->get();
+
+        return view('front.payment',compact('title','order','orderdetils'));
+    }
+
+    
 }

@@ -214,9 +214,9 @@
                       @if ($pro->created_at->diffIndays() <= 3)
                         <span class="badge badge-danger"> NEW </span>
                       @endif
-                      <a id="single_image" href="{{ asset($pro->photos->where('type', 'image1')->first()->src) }}">
-                        <img src="{{ asset($pro->photos->where('type', 'image1')->first()->src) }}">
-                      </a>
+                      {{-- <a id="single_image" href="{{ asset($pro->photos->where('type', 'image1')->first()->src) }}"> --}}
+                        {{-- <img src="{{ asset($pro->photos->where('type', 'image1')->first()->src) }}"> --}}
+                      {{-- </a> --}}
                       <a class="btn-overlay" href="shop/{{ $pro->id }}/quickview"
                         data-target="#quickview-modal">
                         <i class="fa fa-search-plus"></i>

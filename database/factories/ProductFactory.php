@@ -28,10 +28,6 @@ class ProductFactory extends Factory
             'model'=>fake()->randomNumber(2),
             'color'=>fake()->colorName(),
             'size'=>fake()->randomNumber(1),
-            'mainImage'=>fake()->image(),
-            'image1'=>fake()->image(),
-            'image2'=>fake()->image(),
-            'image3'=>fake()->image(),
             'is_delete'=>fake()->boolean(),
             'category_id'=>Category::factory(),
             'brand_id'=>Brand::factory()

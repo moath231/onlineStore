@@ -11,6 +11,7 @@ class CartController extends Controller
 {
     public function index()
     {
+        
         $title = 'cart';
         $cartItems = [];
 
@@ -33,9 +34,14 @@ class CartController extends Controller
                     ];
                 });
         }
+
+        if($cartItems->count() == 0){
+            return redirect('/');
+        }
+        
         $totalPrice = $cartItems->sum('sumPrice');
 
-        return view('front.cart', compact('title', 'cartItems','totalPrice'));
+        return view('front.cart', compact('title', 'cartItems', 'totalPrice'));
     }
 
     public function addToCart(CartRequest $request)
@@ -74,16 +80,22 @@ class CartController extends Controller
     }
 
     public function updateQuantity(Request $request)
-{
-    $userId = session()->get('user')['id'];
-    $cartItem = Cart::where('user_id', $userId)
-        ->where('product_id', $request->productId)
-        ->firstOrFail();
-    $cartItem->quantity = $request->quantity;
-    $cartItem->save();
+    {
+        $userId = session()->get('user')['id'];
+        $cartItem = Cart::where('user_id', $userId)
+            ->where('product_id', $request->productId)
+            ->firstOrFail();
+            
+        $cartItem->quantity = $request->quantity;
 
-    return response()->json(['success' => true]);
-}
+        if ($cartItem->quantity == 0) {
+            $cartItem->delete();
+        } else {
+            $cartItem->save(); 
+        }
+
+        return response()->json(['success' => true]);
+    }
 
     public function distroy($id)
     {

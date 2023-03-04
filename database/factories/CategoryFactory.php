@@ -12,7 +12,6 @@ class CategoryFactory extends Factory
             'name' => fake()->name(),
             'slug' => fake()->slug(),
             'description' => fake()->sentence(),
-            'logo' => asset('images/logo-dark.png'),
         ];
     }
 }

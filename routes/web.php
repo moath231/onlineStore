@@ -51,6 +51,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::POST('checkout', [OrderController::class, 'index'])->name('checkout.index');
     Route::POST('placeorder', [OrderController::class, 'placeorder'])->name('placeorder');
+    Route::get('payment', [OrderController::class, 'payment'])->name('payment');
 
     Route::post('apply-coupon', [CouponController::class, 'applycoupon'])->name('applycoupon');
 });

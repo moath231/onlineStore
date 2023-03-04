@@ -37,6 +37,7 @@
 
   @stack('shopPage')
   @stack('updateQuantity')
+  @stack('checkout')
 
 </head>
 

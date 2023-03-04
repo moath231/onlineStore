@@ -6,11 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('shippings', function (Blueprint $table) {
@@ -19,7 +14,7 @@ return new class extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('address');
-            $table->string('addressO');
+            $table->string('addressO')->nullable();
             $table->string('city');
             $table->string('country');
             $table->string('state');
@@ -31,11 +26,6 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('shippings');

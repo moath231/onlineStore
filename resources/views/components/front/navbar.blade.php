@@ -18,7 +18,7 @@ $cartCount = CartController::cartItem();
       <div class="col-lg-3 col-sm-6">
         <div class="widgets-wrap d-flex justify-content-end">
 
-          @auth
+          @if (Auth::check() && $cartCount > 0)
             <div class="dropdown cartStyle">
               <a href="{{ route('cart') }}" class="icontext">
                 <div class="icon-wrap icon-xs position-top cart-color">
@@ -30,7 +30,7 @@ $cartCount = CartController::cartItem();
                 </div>
               </a>
             </div>
-          @endauth
+          @endif
 
           <div class="widget-header dropdown">
             <a href="#" class="icontext ml-3" data-toggle="dropdown" data-offset="100,15">

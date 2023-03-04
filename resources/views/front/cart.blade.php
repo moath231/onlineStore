@@ -41,8 +41,7 @@
                     <td style="width: 100px;">
                       <figure class="media">
                         <div class="img-wrap">
-                          <img src="{{ $cart['product']->photos->where('type', 'image1')->first()->src }}"
-                            class="img-thumbnail img-sm">
+                          {{-- <img src="{{ $cart['product']->photos->where('type', 'image1')->first()->src }}" class="img-thumbnail img-sm"> --}}
                         </div>
                         <figcaption class="media-body">
                           <h6 class="title text-truncate">{{ $cart['product']->name }} </h6>
