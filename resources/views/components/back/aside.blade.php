@@ -9,19 +9,19 @@
   <ul class="app-menu">
     <li>
       <a class="app-menu__item {{  Request::is('admin') ? 'active' : '' }}" href="{{ route('admin.index') }}">
-        <i class="app-menu__icon fa fa-dashboard"></i>
+        <i class="app-menu__icon fa fa-dashboard mr-2"></i>
         <span class="app-menu__label">Dashboard</span>
       </a>
     </li>
     <li>
       <a class="app-menu__item {{  Request::is('admin/homeAdmin') ? 'active' : '' }}" href="{{ route('homeAdmin') }}">
-        <i class="app-menu__icon fa fa-home"></i>
+        <i class="app-menu__icon fa fa-home mr-2"></i>
         <span class="app-menu__label">home</span>
       </a>
     </li>
     <li class="treeview">
       <a class="app-menu__item {{  Request::is('admin/product') || Request::is('admin/product/create') ? 'active' : '' }}" href="#" data-toggle="treeview">
-        <i class="app-menu__icon fa fa-product-hunt" aria-hidden="true"></i>
+        <i class="fas fa-shopping-bag mr-2"></i>
         <span class="app-menu__label">product</span>
         <i class="treeview-indicator fa fa-angle-right"></i>
       </a>
@@ -42,7 +42,7 @@
     </li>
     <li class="treeview">
       <a class="app-menu__item {{  Request::is('admin/category') || Request::is('admin/category/create') ? 'active' : '' }}" href="#" data-toggle="treeview">
-        <i class="app-menu__icon fa fa-eercast" aria-hidden="true"></i>
+        <i class="fad fa-bars mr-2"></i>
         <span class="app-menu__label">category</span>
         <i class="treeview-indicator fa fa-angle-right"></i>
       </a>
@@ -63,7 +63,7 @@
     </li>
     <li class="treeview">
       <a class="app-menu__item {{  Request::is('admin/brand') || Request::is('admin/brand/create') ? 'active' : '' }}" href="#" data-toggle="treeview">
-        <i class="app-menu__icon fa  fa-list-alt" aria-hidden="true"></i>
+        <i class="app-menu__icon fa  fa-list-alt mr-2" aria-hidden="true"></i>
         <span class="app-menu__label">brand</span>
         <i class="treeview-indicator fa fa-angle-right"></i>
       </a>
@@ -85,15 +85,15 @@
 
     <li>
       <a class="app-menu__item {{  Request::is('couponIndex') ? 'active' : '' }}" href="{{ route('couponIndex') }}">
-        <i class="app-menu__icon fa fa-dashboard"></i>
+        <i class="fas fa-percent mr-2"></i>
         <span class="app-menu__label">Coupon</span>
       </a>
     </li>
 
     <li>
-      <a class="app-menu__item {{  Request::is('payment.index') ? 'active' : '' }}" href="{{ route('payment.index') }}">
-        <i class="app-menu__icon fa fa-dashboard"></i>
-        <span class="app-menu__label">payment</span>
+      <a class="app-menu__item {{  Request::is('couponIndex') ? 'active' : '' }}" href="{{ route('couponIndex') }}">
+        <i class="fas fa-money-check-alt mr-2"></i>
+        <span class="app-menu__label">order</span>
       </a>
     </li>
 

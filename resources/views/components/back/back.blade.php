@@ -28,16 +28,15 @@
   </main>
 
   
-  <script src="{{ asset('js/jquery-2.0.0.min.js') }}"></script>
-  {{-- <script src="{{ asset('backend/js/popper.min.js') }}"></script> --}}
+  <script src="{{ asset('backend/js/plugins/pace.min.js') }}"></script>
+  <script src="{{ asset('backend/js/jquery-3.2.1.min.js') }}"></script>
+  <script src="{{ asset('backend/js/popper.min.js') }}"></script>
   <script src="{{ asset('backend/js/bootstrap.min.js') }}"></script>
   <script src="{{ asset('backend/js/main.js') }}"></script>
   <!-- The javascript plugin to display page loading on top-->
   <script type="text/javascript" src="{{ asset('backend/js/plugins/jquery.dataTables.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('backend/js/plugins/dataTables.bootstrap.min.js') }}"></script>
-  <script type="text/javascript">
-    $('#sampleTable').DataTable();
-  </script>
+  <script type="text/javascript"> $('#sampleTable').DataTable(); </script>
 
 </body>
 

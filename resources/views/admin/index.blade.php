@@ -12,7 +12,7 @@
   <div class="row">
     <div class="col-md-6 col-lg-3">
       <div class="widget-small primary coloured-icon">
-        <i class="icon fa fa-users fa-3x"></i>
+        <i class="icon fas fa-shopping-bag fa-3x"></i>
         <div class="info">
           <a class="linkDashboradAdmin" href="{{ route('product.index') }}">
             <h4>product</h4>
@@ -23,7 +23,7 @@
     </div>
     <div class="col-md-6 col-lg-3">
       <div class="widget-small info coloured-icon">
-        <i class="icon fa fa-thumbs-o-up fa-3x"></i>
+        <i class="icon fad fa-bars fa-3x"></i>
         <div class="info">
           <a class="linkDashboradAdmin" href="{{ route('category.index') }}">
             <h4>category</h4>
@@ -34,7 +34,7 @@
     </div>
     <div class="col-md-6 col-lg-3">
       <div class="widget-small warning coloured-icon">
-        <i class="icon fa fa-files-o fa-3x"></i>
+        <i class="icon fa fa-users fa-3x"></i>
         <div class="info">
           <a class="linkDashboradAdmin" href="">
             <h4>Users</h4>
@@ -45,7 +45,7 @@
     </div>
     <div class="col-md-6 col-lg-3">
       <div class="widget-small danger coloured-icon">
-        <i class="icon fa fa-star fa-3x"></i>
+        <i class="icon fa  fa-list-alt fa-3x"></i>
         <div class="info">
           <a class="linkDashboradAdmin" href="{{ route('brand.index') }}">
             <h4>Brand</h4>
@@ -56,7 +56,7 @@
     </div>
     <div class="col-md-6 col-lg-3">
       <div class="widget-small danger coloured-icon">
-        <i class="icon fa fa-star fa-3x"></i>
+        <i class="icon fas fa-money-check-alt fa-3x"></i>
         <div class="info">
           <a class="linkDashboradAdmin" href="">
             <h4>order</h4>

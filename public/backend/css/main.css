@@ -100,6 +100,10 @@ p {
   margin-bottom: 1rem;
 }
 
+/*  /* */ */
+
+/*  /* */ */
+
 abbr[title], abbr[data-original-title] {
   text-decoration: underline;
   -webkit-text-decoration: underline dotted;
@@ -12802,6 +12806,19 @@ be a descendant of the grid when it is being dragged.
 
 .app-notification__icon {
   padding-right: 10px;
+}
+
+.app-notification__icon .backgroundstyle{
+  background-color: #009688;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+.app-notification__icon .backgroundstyleC{
+  background-color: #dc3545;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
 }
 
 .app-notification__message {
